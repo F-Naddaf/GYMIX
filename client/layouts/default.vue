@@ -2,31 +2,45 @@
   <div>
     <header>
       <nav>
-        <div class="logo-container">
-          <NuxtLink to="/"
-            ><img class="logo" src="../public/images/logo.png" alt="logo"
-          /></NuxtLink>
+        <NuxtLink to="/" class="logo-wrapper"
+          ><img class="logo" src="/images/logo.png" alt="logo"
+        /></NuxtLink>
+        <div class="routes">
+          <ul>
+            <li>
+              <NuxtLink to="/">Home</NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/about">About</NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/gallery">Gallery</NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/program">Program</NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/blog">Blog</NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/classes">Classes</NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/contact">Contact</NuxtLink>
+            </li>
+          </ul>
         </div>
-        <ul>
-          <li>
-            <NuxtLink to="/">Home</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/about">About</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/gallery">Gallery</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/program">Program</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/blog">Blog</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/classes">Classes</NuxtLink>
-          </li>
-        </ul>
+        <div class="btns-container">
+          <button class="btn-user">
+            <i class="fa-regular fa-user"></i>
+          </button>
+          <button class="btn-menu">
+            <i class="fa-solid fa-chart-bar"></i>
+          </button>
+          <button class="btn-join">
+            <h3>Join class now</h3>
+          </button>
+        </div>
       </nav>
     </header>
     <div>
@@ -40,25 +54,31 @@
 <style scoped>
 header {
   height: 10vh;
+  background-color: var(--colors-primary-100);
   background-color: black;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 nav {
   display: flex;
-  width: 95%;
+  width: 98%;
   justify-content: space-between;
+  align-items: center;
 }
-.logo-container {
+.routes {
+  display: flex;
+}
+.logo-wrapper {
   display: flex;
   align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: fit-content;
+  justify-content: flex-start;
 }
-.logo {
-  height: 90%;
+img {
+  width: 80%;
 }
 ul {
   list-style: none;
@@ -70,13 +90,54 @@ li {
   padding: 10px;
 }
 li a {
-  font-family: sans-serif;
-  color: #bdbdbd;
-  color: rgb(243, 243, 243);
-  font-weight: 100;
+  /* color: #bdbdbd;   */
+  color: var(--text-color);
+  letter-spacing: 1px;
+  display: block;
   text-decoration: none;
+  font-size: 14px;
 }
-.router-link-exact-active {
-  color: #ff2332;
+li a:hover {
+  color: var(--primary-hover);
+}
+.routes .router-link-exact-active {
+  color: var(--primary-color);
+  font-size: 14px;
+}
+.btns-container .btn-user,
+.btn-menu {
+  background: none;
+  border: none;
+  margin-right: 20px;
+}
+.btns-container .btn-join {
+  background: var(--primary-color);
+  border-radius: 8px;
+  border: none;
+  padding: 15px 20px;
+  margin-left: 20px;
+}
+.btns-container .btn-join h3 {
+  font-weight: 600;
+  font-size: 16px;
+  color: white;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+i {
+  color: var(--text-color);
+  font-size: 20px;
+}
+.btns-container button {
+  cursor: pointer;
+}
+.btns-container .btn-user:hover i {
+  color: var(--primary-hover);
+}
+.btns-container .btn-menu:hover i {
+  color: var(--primary-hover);
+}
+.btns-container .btn-join:hover {
+  background-color: var(--primary-btn-hover);
 }
 </style>

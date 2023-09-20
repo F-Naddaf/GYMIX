@@ -1,5 +1,12 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ["@nuxtjs/tailwindcss"],
-  // devtools: { enabled: true }
+  modules: ["@nuxtjs/google-fonts"],
+
+  googleFonts: {
+    families: {
+      Roboto: {
+        wght: [100, 200, 400, 600, 700, 900],
+      },
+    },
+  },
+  css: ["@fortawesome/fontawesome-free/css/all.css", "/assets/css/style.css"],
 });

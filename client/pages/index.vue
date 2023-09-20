@@ -1,5 +1,6 @@
 <template>
   <div>
+    <HeroSection />
     <h2>Home</h2>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus velit
