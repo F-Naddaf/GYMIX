@@ -1,0 +1,26 @@
+body {
+  background-color: rgb(39, 39, 39);
+  font-family: "Roboto", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary-color: #ff2332;
+  --primary-hover: #ff9ea5;
+  --primary-btn-hover: #a7000b;
+  --secondary-color: #ff662d;
+  --text-color: #dfdfdf;
+  --background-color: #26292e;
+  --slogan-color: #26292e;
+  /* --text-color: #333333; */
+  /* --font-family: "Roboto", sans-serif; */
+}
+
+a {
+  text-decoration: none;
+}
