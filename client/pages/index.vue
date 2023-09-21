@@ -1,11 +1,7 @@
 <template>
   <div>
     <HeroSection />
-    <h2>Home</h2>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus velit
-      mollitia harum quasi cupiditate atque reprehenderit sit! Ut, vitae porro.
-    </p>
+    <HomeCard />
   </div>
 </template>
 
