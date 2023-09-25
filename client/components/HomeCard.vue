@@ -5,6 +5,7 @@
       :key="article.id"
       @mouseover="setHovered(article.id)"
       @mouseout="setHovered(null)"
+      :class="isHovered === article.id ? 'imageCard' : 'normalCard'"
     >
       <img
         :src="
@@ -66,39 +67,44 @@ const articles = ref([
   width: 80%;
   height: auto;
   margin: 40px auto;
+  padding: 20px 0 80px 0;
 }
-article {
+.normalCard {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 300px;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 60px 20px;
-  border-top-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5);
+  background: rgba(255, 255, 255, 0.1);
   overflow: hidden;
+  padding: 60px 20px;
+  border-radius: 14px;
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
   cursor: pointer;
+  backdrop-filter: blur(5px);
 }
 
-article::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.imageCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5);
   background: none;
   background-image: url("/images/card-1.png");
   background-position: left;
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: -1;
-}
-article:hover::before {
-  opacity: 1;
+  overflow: hidden;
+  padding: 60px 20px;
+  border-radius: 14px;
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  backdrop-filter: blur(5px);
 }
 img {
   height: auto;
@@ -114,6 +120,7 @@ h3 {
 }
 p {
   text-align: center;
+  font-size: 14px;
 }
 article:hover h3,
 article:hover p {

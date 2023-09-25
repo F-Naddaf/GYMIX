@@ -3,7 +3,7 @@
     <div class="hero-wrapper">
       <aside class="slogan-container">
         <div class="slogan-tag">
-          <img src="/images/title-bg.png" alt="tag" />
+          <img src="/images/title-bg-primary.png" alt="tag" />
           <div class="slogan-title">
             <h3>get healthy body</h3>
           </div>
@@ -73,6 +73,7 @@
 .slogan-tag img {
   width: 100%;
   height: auto;
+  filter: brightness(0) invert(1);
 }
 .slogan-title {
   position: absolute;

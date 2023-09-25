@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(39, 39, 39);
+  background-color: rgb(27, 27, 27);
   font-family: "Roboto", sans-serif;
 }
 
@@ -15,6 +15,7 @@ body {
   --primary-btn-hover: #a7000b;
   --secondary-color: #ff662d;
   --text-color: #dfdfdf;
+  --description-color: #999999;
   --background-color: #26292e;
   --slogan-color: #26292e;
   /* --text-color: #333333; */
