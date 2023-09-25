@@ -2,6 +2,7 @@
   <div>
     <HeroSection />
     <HomeCard />
+    <AboutUs />
   </div>
 </template>
 
