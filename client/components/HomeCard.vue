@@ -1,21 +1,23 @@
 <template>
   <div class="card-container">
-    <article
-      v-for="article in articles"
-      :key="article.id"
-      @mouseover="setHovered(article.id)"
-      @mouseout="setHovered(null)"
-      :class="isHovered === article.id ? 'imageCard' : 'normalCard'"
-    >
-      <img
-        :src="
-          isHovered === article.id ? article.whiteImage : article.normalImage
-        "
-        :alt="article.alt"
-      />
-      <h3>{{ article.title }}</h3>
-      <p>{{ article.description }}</p>
-    </article>
+    <div class="card-wrapper">
+      <article
+        v-for="article in articles"
+        :key="article.id"
+        @mouseover="setHovered(article.id)"
+        @mouseout="setHovered(null)"
+        :class="isHovered === article.id ? 'imageCard' : 'normalCard'"
+      >
+        <img
+          :src="
+            isHovered === article.id ? article.whiteImage : article.normalImage
+          "
+          :alt="article.alt"
+        />
+        <h3>{{ article.title }}</h3>
+        <p>{{ article.description }}</p>
+      </article>
+    </div>
   </div>
 </template>
 
@@ -61,31 +63,46 @@ const articles = ref([
 
 <style scoped>
 .card-container {
+  position: relative;
+  width: 100%;
+  padding: 20px 0;
+}
+.card-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/images/background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.3;
+}
+.card-wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   width: 80%;
-  height: auto;
-  margin: 40px auto;
-  padding: 20px 0 80px 0;
+  margin: auto;
+  padding: 50px 0 50px 0;
 }
 .normalCard {
-  position: relative;
+  z-index: 10;
   display: flex;
+  height: auto;
+  width: 300px;
   flex-direction: column;
   align-items: center;
-  width: 300px;
-  box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5);
-  background: rgba(255, 255, 255, 0.1);
-  overflow: hidden;
-  padding: 60px 20px;
-  border-radius: 14px;
-  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  justify-content: center;
+  border-radius: 12px;
   border-top: 1px solid rgba(255, 255, 255, 0.5);
-  cursor: pointer;
-  backdrop-filter: blur(5px);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.7) 0px 3px 8px;
+  padding: 60px 20px;
 }
-
 .imageCard {
   position: relative;
   display: flex;
@@ -117,10 +134,12 @@ h3 {
   font-weight: 900;
   text-transform: uppercase;
   margin-bottom: 20px;
+  color: var(--primary-color);
 }
 p {
   text-align: center;
   font-size: 14px;
+  color: var(--description-color);
 }
 article:hover h3,
 article:hover p {
