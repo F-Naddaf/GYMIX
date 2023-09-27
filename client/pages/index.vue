@@ -3,6 +3,7 @@
     <HeroSection />
     <HomeCard />
     <AboutUs />
+    <Featured />
   </div>
 </template>
 

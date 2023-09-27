@@ -1,5 +1,5 @@
 <template>
-  <div class="about-container">
+  <section class="about-container">
     <aside class="image-container">
       <div class="image-wrapper">
         <img src="/images/tradmill.png" alt="tradmill" />
@@ -41,7 +41,7 @@
         </div>
       </div>
     </aside>
-  </div>
+  </section>
 </template>
 
 <script setup></script>
@@ -53,7 +53,7 @@
   justify-content: space-evenly;
   padding: 120px 0;
   background-color: rgb(34, 34, 34);
-  margin: 40px auto;
+  margin: auto;
 }
 aside {
   display: flex;
