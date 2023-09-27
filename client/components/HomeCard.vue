@@ -42,7 +42,7 @@ const articles = ref([
   },
   {
     id: 2,
-    normalImage: "/icons/workout.png",
+    normalImage: "/icons/workout-0.png",
     whiteImage: "/icons/workout-white.png",
     alt: "workout",
     title: "Workout",
@@ -127,14 +127,13 @@ img {
   height: auto;
   width: 60px;
   margin-bottom: 30px;
-  fill: var(--primary-color);
 }
 h3 {
   font-size: 20px;
   font-weight: 900;
   text-transform: uppercase;
   margin-bottom: 20px;
-  color: var(--primary-color);
+  color: var(--secondary-color);
 }
 p {
   text-align: center;

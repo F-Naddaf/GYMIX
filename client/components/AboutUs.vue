@@ -32,13 +32,6 @@
             <p>Fancy GYM Machines</p>
           </article>
         </section>
-        <!-- <div class="btn-wrapper">
-          <NuxtLink to="/classes" class="classes-btn">
-            <p>Take a Tour</p>
-            <i class="fa-solid fa-arrow-right"></i>
-          </NuxtLink>
-          <span class="btn-border"></span>
-        </div> -->
         <Button to="/classes" buttonText="Take a Tour" :color="color" />
       </div>
     </aside>

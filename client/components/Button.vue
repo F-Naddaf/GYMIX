@@ -7,6 +7,8 @@
           ? 'white-btn'
           : color === 'primary'
           ? 'primary-btn'
+          : color === 'secondary'
+          ? 'secondary-btn'
           : 'default-btn'
       "
       class="btn"
@@ -121,6 +123,54 @@ const props = defineProps({
   padding: 15px 0;
 }
 .primary-btn i {
+  color: var(--text-color);
+  padding-left: 10px;
+}
+
+/* secondary */
+.secondary-btn {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  background: var(--secondary-color);
+  border: none;
+  text-transform: uppercase;
+  padding: 0 20px;
+  margin-top: 50px;
+  font-weight: 400;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+.secondary-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(15px, -15px);
+  width: 99%;
+  height: 98%;
+  z-index: -1;
+  border: 1px solid var(--secondary-color);
+  transition: transform 0.5s ease;
+}
+.secondary-btn:hover::after {
+  border: 1px solid var(--secondary-color);
+  transition: transform 0.5s ease;
+  transform: translate(0);
+}
+.secondary-btn:hover {
+  background: var(--secondary-color);
+}
+.secondary-btn p {
+  color: var(--text-color);
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 15px 0;
+}
+.secondary-btn i {
   color: var(--text-color);
   padding-left: 10px;
 }

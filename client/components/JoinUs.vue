@@ -1,57 +1,229 @@
 <template>
   <section class="join-container">
-    <div class="join-header">
-      <img src="/images/title-bg-primary.png" alt="tag" />
-      <h3>We Are Always Providing Best Fitness Service For You</h3>
-      <Button to="/classes" buttonText="Join with us" :color="color" />
-    </div>
+    <aside class="join-aside">
+      <h3>Why Should People Choose GYMIX Services</h3>
+      <article v-for="(reason, index) in reasons" :key="index">
+        <div class="title">
+          <i class="fa-solid fa-check"></i>
+          <h2>{{ reason.title }}</h2>
+        </div>
+        <p>{{ reason.description }}</p>
+      </article>
+      <div class="btn-container">
+        <Button
+          to="/classes"
+          buttonText="Join with us"
+          :color="color"
+          class="button"
+        />
+      </div>
+    </aside>
+    <aside class="join-aside">
+      <div class="heart-container">
+        <aside class="heart-wrapper">
+          <img src="/icons/heart-rate.png" alt="heart rate" class="heart" />
+        </aside>
+        <aside class="heart-reading">
+          <h3 class="heart-rate">70 bpm</h3>
+          <p>Heart Rate</p>
+        </aside>
+      </div>
+      <span class="image-wrapper">
+        <img src="/images/choose-us-1.png" alt="choose us" class="choose" />
+      </span>
+      <div class="fat-container">
+        <aside class="fat-wrapper">
+          <img src="/icons/fire.png" alt="fat burning" class="fat" />
+        </aside>
+        <aside class="fat-reading">
+          <h3 class="fat-rate">24%</h3>
+          <p>Flat Burning</p>
+        </aside>
+      </div>
+    </aside>
   </section>
 </template>
 
 <script setup>
-const color = "default";
+const color = "secondary";
+
+const reasons = [
+  {
+    title: "Personal Training",
+    description:
+      "Our personal trainers can help you create a personalized fitness plan and track your progress.",
+  },
+  {
+    title: "Expert Trainer",
+    description:
+      "Our GYM is proud ro offer a team of highly skilled and certified trainer help achieve your health & fitness goals.",
+  },
+  {
+    title: "Flexible Time",
+    description:
+      "There are many fitness classes that are offered during off-peak hours, such as early morning or late evening.",
+  },
+];
 </script>
 
 <style scoped>
 .join-container {
   display: flex;
+  justify-content: center;
   width: 100%;
-  margin: 80px 0;
-}
-.join-header {
+  padding: 80px 0;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 70%;
-  height: 150px;
 }
-.join-header::before {
+.join-container::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
-  border-top: 150px solid red;
-  border-right: 50px solid transparent;
-  height: 0;
   width: 100%;
+  height: 100%;
+  background-image: url("/images/background.png");
+  background-size: cover;
+  opacity: 0.3;
 }
-.join-header img {
-  filter: brightness(0) grayscale(100%) hue-rotate(180deg);
-  position: absolute;
-  top: 50%;
-  left: 20%;
-  transform: translate(-20%, -50%) rotate(-3deg);
-  width: 50%;
-  opacity: 0.2;
-}
-.join-header h3 {
-  display: flex;
+.join-container .join-aside h3 {
   color: var(--text-color);
   z-index: 10;
   font-size: 40px;
   font-weight: 900;
-  flex-wrap: wrap;
+  letter-spacing: 2px;
+  margin-bottom: 40px;
+}
+.join-aside {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  margin: 80px 0;
+  position: relative;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+}
+.join-aside h2,
+p,
+i {
+  color: var(--text-color);
+}
+.title {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+.join-aside i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--secondary-color);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 16px;
+}
+.join-aside h2 {
+  margin-left: 20px;
+  color: var(--secondary-color);
+  font-size: 24px;
+}
+.join-aside p {
+  font-size: 16px;
+  letter-spacing: 1px;
+  width: 90%;
+  font-weight: 400;
+}
+.btn-container {
+  position: absolute;
+  bottom: -20px;
+  right: 10%;
+  transform: scale(0.9);
+}
+.image-wrapper {
+  position: relative;
+}
+.choose {
+  width: 100%;
+}
+.heart-container {
+  display: flex;
+  position: absolute;
+  top: 20%;
+  right: 0;
+  width: 220px;
+  height: 85px;
+  background-color: var(--text-color);
+  border-radius: 10px;
+  z-index: 8;
+}
+.heart-container .heart-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35%;
+  height: 100%;
+}
+.heart-wrapper .heart {
   width: 60%;
+  height: 50%;
+}
+.heart-container .heart-reading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 65%;
+  height: 100%;
+}
+.heart-container .heart-reading .heart-rate {
+  color: var(--slogan-color);
+  font-size: 26px;
+  font-weight: 900;
+  margin: 0;
+}
+.heart-container .heart-reading p {
+  color: var(--slogan-color);
+  font-size: 18px;
+  font-weight: 500;
+}
+.fat-container {
+  display: flex;
+  position: absolute;
+  bottom: 20%;
+  left: 0;
+  width: 220px;
+  height: 85px;
+  background-color: var(--text-color);
+  border-radius: 10px;
+  z-index: 8;
+}
+.fat-container .fat-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35%;
+  height: 100%;
+}
+.fat-wrapper .fat {
+  width: 60%;
+  height: 50%;
+}
+.fat-container .fat-reading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 65%;
+  height: 100%;
+}
+.fat-container .fat-reading .fat-rate {
+  color: var(--slogan-color);
+  font-size: 26px;
+  font-weight: 900;
+  margin: 0;
+}
+.fat-container .fat-reading p {
+  color: var(--slogan-color);
+  font-size: 18px;
+  font-weight: 500;
 }
 </style>
