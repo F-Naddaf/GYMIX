@@ -13,14 +13,12 @@
           <h2 class="font-normal">MAKE YOUR BODY</h2>
           <h2 class="font-thin">FIT & PERFECT</h2>
         </div>
-        <div class="btn-wrapper">
-          <button class="classes-btn">
-            <NuxtLink to="/classes">
-              Our classes <i class="fa-solid fa-arrow-right"></i>
-            </NuxtLink>
-          </button>
-          <span class="btn-border"></span>
-        </div>
+        <Button
+          to="/classes"
+          buttonText="Our classes"
+          :color="color"
+          style="margin-top: 20px"
+        />
       </aside>
       <aside class="hero-share">
         <h2>SHARE</h2>
@@ -35,7 +33,9 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+const color = "primary";
+</script>
 
 <style scoped>
 .hero-container {
@@ -111,39 +111,6 @@ h2 {
 }
 .btn-wrapper {
   position: relative;
-}
-.classes-btn {
-  background: var(--primary-color);
-  border: none;
-  text-transform: uppercase;
-  padding: 15px 20px;
-  margin-top: 60px;
-  font-weight: 400;
-  position: relative;
-  z-index: 2;
-  cursor: pointer;
-}
-.classes-btn a {
-  color: white;
-  font-size: 18px;
-}
-.classes-btn::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform: translate(15px, -15px);
-  width: 99%;
-  height: 98%;
-  z-index: -1;
-  border: 1px solid var(--primary-color);
-  transition: transform 0.5s ease;
-}
-.classes-btn:hover::after {
-  transform: translate(0);
-}
-.classes-btn i {
-  padding-left: 10px;
 }
 .hero-share {
   display: flex;

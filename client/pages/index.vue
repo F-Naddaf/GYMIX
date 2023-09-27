@@ -4,6 +4,7 @@
     <HomeCard />
     <AboutUs />
     <Featured />
+    <JoinUs />
   </div>
 </template>
 

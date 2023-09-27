@@ -32,19 +32,22 @@
             <p>Fancy GYM Machines</p>
           </article>
         </section>
-        <div class="btn-wrapper">
+        <!-- <div class="btn-wrapper">
           <NuxtLink to="/classes" class="classes-btn">
             <p>Take a Tour</p>
             <i class="fa-solid fa-arrow-right"></i>
           </NuxtLink>
           <span class="btn-border"></span>
-        </div>
+        </div> -->
+        <Button to="/classes" buttonText="Take a Tour" :color="color" />
       </div>
     </aside>
   </section>
 </template>
 
-<script setup></script>
+<script setup>
+const color = "white";
+</script>
 
 <style scoped>
 .about-container {
@@ -140,59 +143,5 @@ aside {
   padding: 5px 0;
   letter-spacing: 2px;
   text-align: center;
-}
-.btn-wrapper {
-  position: relative;
-  width: fit-content;
-}
-.classes-btn {
-  display: flex;
-  align-items: center;
-  background: var(--text-color);
-  width: 100%;
-  border: none;
-  margin-top: 40px;
-  position: relative;
-  z-index: 2;
-  padding: 0 20px;
-  cursor: pointer;
-}
-.classes-btn p {
-  color: rgb(34, 34, 34);
-  text-transform: uppercase;
-  font-weight: 400;
-  font-size: 16px;
-  font-weight: 700;
-  padding: 15px 0;
-}
-.classes-btn i {
-  color: rgb(34, 34, 34);
-}
-.classes-btn::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform: translate(15px, -15px);
-  width: 99%;
-  height: 98%;
-  z-index: -1;
-  border: 1px solid var(--text-color);
-  transition: transform 0.5s ease;
-}
-.classes-btn:hover {
-  background: var(--primary-color);
-}
-.classes-btn:hover p,
-.classes-btn:hover i {
-  color: var(--text-color);
-}
-.classes-btn:hover::after {
-  border: 1px solid var(--primary-color);
-  transition: transform 0.5s ease;
-  transform: translate(0);
-}
-.classes-btn i {
-  padding-left: 10px;
 }
 </style>
