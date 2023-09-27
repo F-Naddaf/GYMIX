@@ -5,6 +5,7 @@
     <AboutUs />
     <JoinUs />
     <Featured />
+    <Plan />
   </div>
 </template>
 
