@@ -24,6 +24,9 @@
 </template>
 
 <script setup>
+import VanillaTilt from "vanilla-tilt";
+import { onMounted } from "vue";
+
 const priceCards = [
   {
     id: "1",
@@ -60,9 +63,15 @@ const priceCards = [
     ],
   },
 ];
-VanillaTilt.init(document.querySelector(".card"), {
-  max: 25,
-  speed: 400,
+
+onMounted(() => {
+  const cardElements = Array.from(document.querySelectorAll(".card"));
+  cardElements.forEach((cardElement) => {
+    VanillaTilt.init(cardElement, {
+      max: 25,
+      speed: 400,
+    });
+  });
 });
 </script>
 
