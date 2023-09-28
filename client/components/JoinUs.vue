@@ -169,6 +169,18 @@ i {
 .heart-wrapper .heart {
   width: 60%;
   height: 50%;
+  animation: heartbeat 0.5s infinite;
+}
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 .heart-container .heart-reading {
   display: flex;
@@ -207,9 +219,22 @@ i {
   width: 35%;
   height: 100%;
 }
+@keyframes burn {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(0) rotate(10deg);
+  }
+  75% {
+    transform: translateY(0) rotate(-10deg);
+  }
+}
 .fat-wrapper .fat {
   width: 60%;
   height: 50%;
+  animation: burn 0.5s infinite;
 }
 .fat-container .fat-reading {
   display: flex;

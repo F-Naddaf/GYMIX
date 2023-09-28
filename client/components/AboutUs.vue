@@ -20,7 +20,7 @@
         </p>
         <section class="icon-container">
           <article>
-            <img src="/icons/workout.png" alt="workout" />
+            <img src="/icons/workout-icon.png" alt="workout" />
             <p>Professional Trainers</p>
           </article>
           <article>
