@@ -7,10 +7,13 @@
         fun culture. Attracts talents and showcases company's work atmosphere.
       </p>
     </div>
-    <div class="images">
-      <div v-for="image in images" :key="image.id">
-        <img :src="image.src" :alt="image.id" />
-      </div>
+    <div class="images-container">
+      <div
+        v-for="image in images"
+        :key="image.id"
+        :id="`item-${image.id}`"
+        :style="{ backgroundImage: `url('${image.src}')` }"
+      ></div>
     </div>
   </section>
 </template>
@@ -44,6 +47,7 @@ const images = [
 .gallery-container {
   display: flex;
   flex-direction: column;
+  margin-bottom: 80px;
 }
 .gallery-header {
   display: flex;
@@ -70,41 +74,55 @@ const images = [
   text-align: center;
   margin-bottom: 40px;
 }
-.images {
+.images-container {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-template-rows: repeat(4, minmax(0, 1fr));
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   gap: 10px;
   height: 100%;
   width: 80%;
   margin: 40px auto;
   overflow: hidden;
-  height: 800px;
-}
-.images > div {
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-}
-img {
-  width: 105%;
   height: auto;
 }
-.images > div:first-child,
-.images > div:last-child {
-  grid-column-end: span 2;
-  grid-row-end: span 2;
+.images-container > div {
+  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(100%);
+  transition: filter 0.1s ease;
+  overflow: hidden;
 }
-.images > div:last-child {
-  grid-column-start: 3;
-  grid-row-start: 2;
+#item-1 {
+  grid-column-end: 3;
+  grid-column-start: 1;
+  grid-row-end: 3;
+  grid-row-start: 1;
+  height: 420px;
+  width: 100%;
+  object-fit: cover;
+  overflow: hidden;
 }
-.images > div:nth-child(2) {
-  grid-column-start: 3;
+#item-2 {
   grid-column-end: 5;
-  grid-row: span 1;
+  grid-column-start: 3;
+  object-fit: cover;
 }
-.images:hover img {
+#item-3 {
+  grid-column-end: 3;
+  grid-column-start: 2;
+}
+#item-4 {
+  grid-row-end: 4;
+  grid-row-start: 3;
+}
+#item-5 {
+  grid-row-end: 4;
+  grid-row-start: 2;
+  grid-column-end: 5;
+  grid-column-start: 3;
+}
+.images-container > div:hover {
   filter: none;
 }
 </style>

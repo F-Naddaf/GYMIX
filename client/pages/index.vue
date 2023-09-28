@@ -8,6 +8,7 @@
     <Plan />
     <BMI />
     <Gallery />
+    <Trainers />
   </div>
 </template>
 
