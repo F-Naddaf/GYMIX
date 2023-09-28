@@ -88,8 +88,6 @@ const features = [
   left: 0;
   width: 100%;
   height: 100%;
-  /* background-color: rgb(34, 34, 34);
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
   background-color: rgb(34, 34, 34);
   background-image: linear-gradient(
     to right,
