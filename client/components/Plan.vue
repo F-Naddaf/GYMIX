@@ -105,9 +105,6 @@ onMounted(() => {
   margin: auto;
   z-index: 10;
 }
-.plan-header p {
-  color: var(--text-color);
-}
 .plan-header .title {
   color: var(--secondary-color);
   font-size: 40px;
