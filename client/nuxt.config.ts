@@ -3,8 +3,8 @@ export default defineNuxtConfig({
 
   googleFonts: {
     families: {
-      Roboto: {
-        wght: [100, 200, 400, 600, 700, 900],
+      Lato: {
+        wght: [100, 200, 300, 400, 500, 600, 700, 800, 900],
       },
     },
   },

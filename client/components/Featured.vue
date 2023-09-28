@@ -88,7 +88,18 @@ const features = [
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("/images/background.png");
+  /* background-color: rgb(34, 34, 34);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+  background-color: rgb(34, 34, 34);
+  background-image: linear-gradient(
+    to right,
+    #141414,
+    #202020,
+    #4b4b4b,
+    #202020,
+    #141414
+  );
+  box-shadow: rgba(0, 0, 0, 0.5) 0px -5px 16px, rgba(0, 0, 0, 0.5) 0px 5px 16px;
   background-size: cover;
   opacity: 0.3;
 }

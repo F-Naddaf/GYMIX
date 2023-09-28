@@ -71,7 +71,7 @@ const reasons = [
   display: flex;
   justify-content: center;
   width: 100%;
-  padding: 80px 0;
+  padding: 40px 0;
   position: relative;
 }
 .join-container::before {
@@ -111,17 +111,18 @@ i {
 .title {
   display: flex;
   align-items: center;
-  margin: 20px 0;
+  margin: 20px 0 10px 0;
 }
 .join-aside i {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--secondary-color);
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
-  font-size: 16px;
+  font-size: 14px;
+  color: white;
 }
 .join-aside h2 {
   margin-left: 20px;
@@ -129,10 +130,11 @@ i {
   font-size: 24px;
 }
 .join-aside p {
-  font-size: 16px;
+  font-size: 14px;
   letter-spacing: 1px;
   width: 90%;
   font-weight: 400;
+  margin-bottom: 20px;
 }
 .btn-container {
   position: absolute;
@@ -185,11 +187,12 @@ i {
   color: var(--slogan-color);
   font-size: 18px;
   font-weight: 500;
+  margin: 0;
 }
 .fat-container {
   display: flex;
   position: absolute;
-  bottom: 20%;
+  bottom: 15%;
   left: 0;
   width: 220px;
   height: 85px;
@@ -225,5 +228,6 @@ i {
   color: var(--slogan-color);
   font-size: 18px;
   font-weight: 500;
+  margin: 0;
 }
 </style>
