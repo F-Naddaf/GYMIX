@@ -6,6 +6,7 @@
     <JoinUs />
     <Featured />
     <Plan />
+    <BMI />
   </div>
 </template>
 
