@@ -9,15 +9,17 @@
     </div>
     <div class="price-wrapper">
       <article v-for="card in priceCards" :key="card.id" class="card">
-        <h3>{{ card.type }}</h3>
-        <h1>€{{ card.amount }} <span>/ Per Month</span></h1>
-        <ul>
-          <li v-for="(desc, index) in card.description" :key="index">
-            <img src="/icons/check.png" alt="check mark" />
-            <p>{{ desc }}</p>
-          </li>
-        </ul>
-        <NuxtLink class="plan-btn" to="/contact">Choose Plan</NuxtLink>
+        <div class="tilt-container" ref="tiltContainer">
+          <h3>{{ card.type }}</h3>
+          <h1>€{{ card.amount }} <span>/ Per Month</span></h1>
+          <ul>
+            <li v-for="(desc, index) in card.description" :key="index">
+              <img src="/icons/check.png" alt="check mark" />
+              <p>{{ desc }}</p>
+            </li>
+          </ul>
+          <NuxtLink class="plan-btn" to="/contact">Choose Plan</NuxtLink>
+        </div>
       </article>
     </div>
   </section>
@@ -65,7 +67,7 @@ const priceCards = [
 ];
 
 onMounted(() => {
-  const cardElements = Array.from(document.querySelectorAll(".card"));
+  const cardElements = Array.from(document.querySelectorAll(".tilt-container"));
   cardElements.forEach((cardElement) => {
     VanillaTilt.init(cardElement, {
       max: 25,
@@ -107,7 +109,7 @@ onMounted(() => {
   color: var(--text-color);
 }
 .plan-header .title {
-  color: var(--text-color);
+  color: var(--secondary-color);
   font-size: 40px;
   font-weight: 900;
   letter-spacing: 2px;
@@ -130,19 +132,22 @@ onMounted(() => {
   margin: auto;
   z-index: 10;
 }
-.price-wrapper article {
+.price-wrapper .card {
+  transform: scale(0.9);
+  transition: transform 0.5s ease;
+}
+.price-wrapper .tilt-container {
   display: flex;
   flex-direction: column;
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   border-left: 1px solid rgba(255, 255, 255, 0.5);
   border-color: rgba(255, 255, 255, 0.3);
-  background-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1);
   box-shadow: rgba(0, 0, 0, 0.7) 0px 3px 8px;
   padding: 30px 40px;
   border-radius: 20px;
   align-items: center;
-  transform: scale(0.9);
-  transition: transform 0.5s ease;
+  height: 450px;
 }
 .price-wrapper article h1,
 h3,
@@ -150,21 +155,21 @@ li {
   color: white;
 }
 .price-wrapper h3 {
-  font-size: 16px;
+  font-size: 14px;
   text-transform: uppercase;
   font-weight: 400;
   letter-spacing: 1px;
   margin-bottom: 30px;
 }
 .price-wrapper h1 {
-  font-size: 45px;
+  font-size: 36px;
   text-transform: uppercase;
   font-weight: 900;
   letter-spacing: 1px;
   margin-bottom: 30px;
 }
 .price-wrapper h1 span {
-  font-size: 16px;
+  font-size: 14px;
   text-transform: uppercase;
   font-weight: 400;
   letter-spacing: 1px;
@@ -174,6 +179,7 @@ li {
   display: flex;
   justify-content: flex-start;
   margin: 15px 0;
+  font-size: 14px;
 }
 .price-wrapper ul li img {
   filter: brightness(0) invert(1);
@@ -187,11 +193,13 @@ li {
   margin-top: 40px;
   color: white;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
 }
-.price-wrapper article:hover {
-  transform: scale(1);
+.price-wrapper .card:hover {
+  transform: scale(1.02);
+}
+.price-wrapper .card:hover .tilt-container {
   background: var(--secondary-color);
 }
 .plan-btn:hover {
