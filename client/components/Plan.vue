@@ -8,7 +8,7 @@
       </p>
     </div>
     <div class="price-wrapper">
-      <article v-for="card in priceCards" :key="card.id">
+      <article v-for="card in priceCards" :key="card.id" class="card">
         <h3>{{ card.type }}</h3>
         <h1>€{{ card.amount }} <span>/ Per Month</span></h1>
         <ul>
@@ -60,6 +60,10 @@ const priceCards = [
     ],
   },
 ];
+VanillaTilt.init(document.querySelector(".card"), {
+  max: 25,
+  speed: 400,
+});
 </script>
 
 <style scoped>
@@ -120,10 +124,16 @@ const priceCards = [
 .price-wrapper article {
   display: flex;
   flex-direction: column;
-  background-color: var(--secondary-color);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.7) 0px 3px 8px;
   padding: 30px 40px;
   border-radius: 20px;
   align-items: center;
+  transform: scale(0.9);
+  transition: transform 0.5s ease;
 }
 .price-wrapper article h1,
 h3,
@@ -170,5 +180,15 @@ li {
   cursor: pointer;
   font-size: 18px;
   font-weight: 500;
+}
+.price-wrapper article:hover {
+  transform: scale(1);
+  background: var(--secondary-color);
+}
+.plan-btn:hover {
+  background: white;
+  border: 1px solid white;
+  color: var(--secondary-color);
+  font-weight: 900;
 }
 </style>
