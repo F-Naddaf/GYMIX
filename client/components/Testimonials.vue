@@ -371,7 +371,6 @@ const prevCard = () => {
   background-color: rgba(255, 255, 255, 0.1);
   margin: auto -60px;
 }
-/* box-shadow: rgba(0, 0, 0, 0.7) 0px 3px 8px; */
 .reviewer-header {
   display: flex;
   align-items: center;
