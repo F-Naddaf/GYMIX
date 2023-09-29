@@ -111,6 +111,10 @@ onMounted(() => {
   font-weight: 900;
   letter-spacing: 2px;
   margin: 40px 0;
+  text-shadow: 1px 1px 1px rgb(133, 37, 2), 1px 2px 1px rgb(133, 37, 2),
+    1px 3px 1px rgb(133, 37, 2), 1px 4px 1px rgb(133, 37, 2),
+    1px 8px 6px rgba(0, 0, 0, 0.4), 1px 12px 10px rgba(0, 0, 0, 0.2),
+    1px 15px 15px rgba(0, 0, 0, 0.2), 1px 20px 30px rgba(0, 0, 0, 0.4);
 }
 .plan-header p {
   color: var(--text-color);
