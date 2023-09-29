@@ -66,7 +66,7 @@ let calcBmi = () => {
   height: 500px;
   padding: 40px 0;
   position: relative;
-  margin-bottom: 80px;
+  margin-bottom: 40px;
 }
 .bmi-container::before {
   content: "";

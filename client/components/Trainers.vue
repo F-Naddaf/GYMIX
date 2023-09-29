@@ -83,7 +83,6 @@ const trainers = [
   width: 100%;
   padding: 60px 0;
   position: relative;
-  margin-bottom: 80px;
 }
 .trainer-container::before {
   content: "";
