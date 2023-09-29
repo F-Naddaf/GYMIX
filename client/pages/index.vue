@@ -7,8 +7,10 @@
     <Featured />
     <Plan />
     <BMI />
-    <Gallery />
+    <!-- <Gallery /> -->
+    <Gallery3D />
     <Trainers />
+    <Testimonials />
   </div>
 </template>
 
