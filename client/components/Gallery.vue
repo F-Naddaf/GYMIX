@@ -89,8 +89,7 @@ const images = [
   object-fit: cover;
   background-size: cover;
   background-position: center;
-  filter: grayscale(100%);
-  transition: filter 0.1s ease;
+  filter: grayscale(60%);
   overflow: hidden;
 }
 #item-1 {
