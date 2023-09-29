@@ -1,7 +1,9 @@
 <template>
   <section class="bmi-container">
     <div class="bmi-wrraper">
-      <h3 class="title">Let's Calculate Your <span>BMI</span></h3>
+      <h3 class="title">
+        Let's Calculate Your <span class="animate">BMI</span>
+      </h3>
       <div class="info-container">
         <p class="info">
           Easily determine your body mass index with our accurate calculation
@@ -23,7 +25,7 @@
         </div>
       </div>
       <div class="btn-container">
-        <button @click="calcBmi">Calculate</button>
+        <button @click="calcBmi"></button>
       </div>
     </div>
   </section>
@@ -93,10 +95,40 @@ let calcBmi = () => {
   font-weight: 700;
   margin-bottom: 20px;
 }
-.title span {
+.title .animate {
   color: var(--primary-color);
   font-size: 52px;
   font-weight: 900;
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+}
+.title .animate::before {
+  content: "BMI";
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--primary-color);
+  font-size: 52px;
+  font-weight: 900;
+  width: 100%;
+  height: 100%;
+  transform-origin: center center;
+  animation: scaleAndFade 0.8s ease-out infinite;
+  opacity: 1;
+  z-index: 1;
+}
+@keyframes scaleAndFade {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    z-index: 4;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+    z-index: 4;
+  }
 }
 .info-container {
   width: 80%;
@@ -144,17 +176,54 @@ let calcBmi = () => {
   margin-top: 60px;
 }
 .btn-container button {
-  text-transform: uppercase;
-  color: var(--text-color);
+  width: 150px;
+  height: 50px;
   background: var(--background-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+  box-shadow: 16px 14px 20px #0000008c;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
   border: none;
-  padding: 10px 20px;
+  cursor: pointer;
+}
+.btn-container button::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 300%;
+  background-image: conic-gradient(#ff2332 20deg, transparent 120deg);
+  animation: rotate 2s linear infinite;
+}
+.btn-container button::after {
+  content: "Calculate";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 144px;
+  height: 45px;
+  background: #101010;
   font-size: 18px;
   font-weight: 500;
-  cursor: pointer;
+  text-transform: uppercase;
+  border-radius: 8px;
+  box-shadow: inset 16px 16px 16px #0000008c;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
 }
 .btn-container button:hover {
   background: var(--primary-color);
+  color: var(--primary-color);
   font-weight: 600;
 }
 </style>
