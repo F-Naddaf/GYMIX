@@ -1,12 +1,16 @@
 <template>
-  <div class="card-container">
+  <div class="card-container" id="cards">
     <div class="card-wrapper">
       <article
-        v-for="article in articles"
+        v-for="(article, index) in articles"
         :key="article.id"
         @mouseover="setHovered(article.id)"
         @mouseout="setHovered(null)"
-        :class="isHovered === article.id ? 'imageCard' : 'normalCard'"
+        :class="{
+          imageCard: isHovered === article.id,
+          normalCard: isHovered !== article.id,
+          activeCard: isScrollAtPosition && index <= activeIndex,
+        }"
       >
         <img
           :src="
@@ -22,13 +26,41 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 
 const isHovered = ref(null);
+const isScrollAtPosition = ref(false);
+const activeIndex = ref(-1);
 
 const setHovered = (id) => {
   isHovered.value = id;
 };
+
+const checkScrollPosition = () => {
+  if (typeof window !== "undefined") {
+    const scrollPosition = window.scrollY;
+    const windowHeight = window.innerHeight;
+
+    if (scrollPosition >= 0.2 * windowHeight) {
+      isScrollAtPosition.value = true;
+    } else {
+      isScrollAtPosition.value = false;
+    }
+
+    if (isScrollAtPosition.value) {
+      const articleIndex = Math.floor(scrollPosition / (0.2 * windowHeight));
+      activeIndex.value = articleIndex;
+    }
+  }
+};
+
+onMounted(() => {
+  window.addEventListener("scroll", checkScrollPosition);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("scroll", checkScrollPosition);
+});
 
 const articles = ref([
   {
@@ -62,6 +94,20 @@ const articles = ref([
 </script>
 
 <style scoped>
+.activeCard {
+  transition: transform 0.6s, opacity 0.6s;
+  transform: perspective(200px) translateZ(0px);
+  opacity: 1;
+}
+.activeCard:nth-child(1) {
+  transition-delay: 0s;
+}
+.activeCard:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.activeCard:nth-child(3) {
+  transition-delay: 0s;
+}
 .card-container {
   position: relative;
   width: 100%;
@@ -86,6 +132,10 @@ const articles = ref([
   width: 80%;
   margin: auto;
   padding: 50px 0 50px 0;
+}
+article {
+  transform: perspective(100px) translateZ(50px);
+  opacity: 0;
 }
 .normalCard {
   z-index: 10;
