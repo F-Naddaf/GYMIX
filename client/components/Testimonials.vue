@@ -169,7 +169,7 @@ const prevCard = () => {
     #141414
   );
   box-shadow: rgba(0, 0, 0, 0.5) 0px -5px 16px, rgba(0, 0, 0, 0.5) 0px 5px 16px;
-  margin: auto auto 80px auto;
+  margin: auto;
 }
 .testimonials-header {
   display: inline-block;
