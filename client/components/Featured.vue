@@ -80,6 +80,15 @@ const features = [
   align-items: center;
   padding: 120px 0;
   position: relative;
+  background-image: linear-gradient(
+    to right,
+    #141414,
+    #202020,
+    #4b4b4b,
+    #202020,
+    #141414
+  );
+  box-shadow: rgba(0, 0, 0, 0.5) 0px -5px 16px, rgba(0, 0, 0, 0.5) 0px 5px 16px;
 }
 .featured-container::before {
   content: "";
