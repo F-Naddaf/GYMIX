@@ -1,5 +1,5 @@
 <template>
-  <section class="about-container">
+  <section class="about-container" ref="aboutContainer">
     <aside class="image-container">
       <div class="image-wrapper">
         <img src="/images/tradmill.png" alt="tradmill" />
@@ -39,7 +39,32 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from "vue";
+
 const color = "white";
+const aboutContainer = ref(null);
+const isScrollAtPosition = ref(false);
+
+const checkScrollPosition = () => {
+  if (typeof window !== "undefined") {
+    const scrollPosition = window.scrollY;
+    const container = aboutContainer.value;
+    const windowHeight = window.innerHeight;
+
+    if (scrollPosition >= windowHeight * 0.6) {
+      isScrollAtPosition.value = true;
+      container.classList.add("slide-in");
+    } else {
+      isScrollAtPosition.value = false;
+      container.classList.remove("slide-in");
+    }
+  }
+};
+
+onMounted(() => {
+  window.addEventListener("scroll", checkScrollPosition);
+  checkScrollPosition();
+});
 </script>
 
 <style scoped>
@@ -59,6 +84,15 @@ const color = "white";
   );
   box-shadow: rgba(0, 0, 0, 0.5) 0px -5px 16px, rgba(0, 0, 0, 0.5) 0px 5px 16px;
   margin: auto;
+  position: relative;
+  overflow: hidden;
+  transform: perspective(100px) translateZ(-35px);
+  opacity: 0;
+  transition: opacity 1s, transform 1s;
+}
+.slide-in {
+  transform: perspective(200px) translateZ(0);
+  opacity: 1;
 }
 aside {
   display: flex;
