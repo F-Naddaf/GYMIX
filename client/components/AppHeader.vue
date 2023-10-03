@@ -31,7 +31,7 @@
         <button class="btn-user">
           <i class="fa-regular fa-user"></i>
         </button>
-        <button class="btn-menu">
+        <button class="btn-menu" @click="openSidebar">
           <i class="fa-solid fa-chart-bar"></i>
         </button>
         <button class="btn-join">
@@ -39,15 +39,27 @@
         </button>
       </div>
     </nav>
+    <SideBar
+      :show="isSidebarVisible"
+      @close-sidebar="isSidebarVisible = false"
+    />
   </header>
 </template>
 
 <script setup>
+import { ref } from "vue";
+
 const scrollToTop = () => {
   window.scrollTo({
     top: 0,
     behavior: "smooth",
   });
+};
+
+const isSidebarVisible = ref(false);
+
+const openSidebar = () => {
+  isSidebarVisible.value = !isSidebarVisible.value;
 };
 </script>
 

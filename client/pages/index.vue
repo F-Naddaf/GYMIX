@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- <SideBar /> -->
     <HeroSection />
     <HomeCard />
     <AboutUs />
