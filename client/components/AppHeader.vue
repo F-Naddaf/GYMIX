@@ -5,25 +5,25 @@
       <div class="routes">
         <ul>
           <li>
-            <NuxtLink to="/">Home</NuxtLink>
+            <NuxtLink to="/" @click="scrollToTop">Home</NuxtLink>
           </li>
           <li>
-            <NuxtLink to="/about">About</NuxtLink>
+            <NuxtLink to="/about" @click="scrollToTop">About</NuxtLink>
           </li>
           <li>
-            <NuxtLink to="/gallery">Gallery</NuxtLink>
+            <NuxtLink to="/gallery" @click="scrollToTop">Gallery</NuxtLink>
           </li>
           <li>
-            <NuxtLink to="/program">Program</NuxtLink>
+            <NuxtLink to="/program" @click="scrollToTop">Program</NuxtLink>
           </li>
           <li>
-            <NuxtLink to="/blog">Blog</NuxtLink>
+            <NuxtLink to="/blog" @click="scrollToTop">Blog</NuxtLink>
           </li>
           <li>
-            <NuxtLink to="/classes">Classes</NuxtLink>
+            <NuxtLink to="/classes" @click="scrollToTop">Classes</NuxtLink>
           </li>
           <li>
-            <NuxtLink to="/contact">Contact</NuxtLink>
+            <NuxtLink to="/contact" @click="scrollToTop">Contact</NuxtLink>
           </li>
         </ul>
       </div>
@@ -42,7 +42,14 @@
   </header>
 </template>
 
-<script setup></script>
+<script setup>
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
+</script>
 
 <style scoped>
 header {
