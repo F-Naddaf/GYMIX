@@ -1,6 +1,6 @@
 <template>
   <div class="logo-container">
-    <NuxtLink to="/" class="logo-wrapper"
+    <NuxtLink to="/" @click="scrollToTop" class="logo-wrapper"
       ><img class="logo" src="/images/logo-1.png" alt="logo" />
       <div class="heart-container">
         <div class="heart-rate">
@@ -40,9 +40,18 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+
 const props = defineProps({
   background: String,
 });
+
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
 </script>
 
 <style scoped>
