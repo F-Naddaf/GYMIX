@@ -25,7 +25,7 @@
         <span></span>
         <div class="hero-social">
           <i class="fa-brands fa-linkedin-in"></i>
-          <i class="fa-brands fa-twitter"></i>
+          <i class="fa-brands fa-x-twitter"></i>
           <i class="fa-brands fa-facebook-f"></i>
         </div>
       </aside>
