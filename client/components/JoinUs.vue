@@ -1,6 +1,6 @@
 <template>
-  <section class="join-container">
-    <aside class="join-aside">
+  <section class="join-container" ref="joinContainer">
+    <aside class="join-aside right" id="right" ref="slideRightElement">
       <h3>Why Should People Choose GYMIX Services</h3>
       <article v-for="(reason, index) in reasons" :key="index">
         <div class="title">
@@ -18,7 +18,7 @@
         />
       </div>
     </aside>
-    <aside class="join-aside">
+    <aside class="join-aside left" id="left" ref="slideLeftElement">
       <div class="heart-container">
         <aside class="heart-wrapper">
           <img src="/icons/heart-rate.png" alt="heart rate" class="heart" />
@@ -45,6 +45,13 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onUnmounted } from "vue";
+
+const joinContainer = ref(null);
+const slideRightElement = ref(null);
+const slideLeftElement = ref(null);
+const isScrollAtPosition = ref(false);
+
 const color = "secondary";
 
 const reasons = [
@@ -64,6 +71,39 @@ const reasons = [
       "There are many fitness classes that are offered during off-peak hours, such as early morning or late evening.",
   },
 ];
+
+const checkScrollPosition = () => {
+  if (typeof window !== "undefined") {
+    const scrollPosition = window.scrollY;
+    const slideRight = document.getElementById("right");
+    const slideLeft = document.getElementById("left");
+    const windowHeight = window.innerHeight * 0.4;
+    const elementRect = joinContainer.value.getBoundingClientRect();
+    const elementPosition = elementRect.top - windowHeight;
+
+    if (scrollPosition >= elementPosition) {
+      isScrollAtPosition.value = true;
+      slideRight.classList.add("slide-right");
+      slideLeft.classList.add("slide-left");
+    } else {
+      isScrollAtPosition.value = false;
+      slideRight.classList.remove("slide-right");
+      slideLeft.classList.remove("slide-left");
+    }
+  }
+};
+
+onMounted(() => {
+  slideRightElement.value = document.getElementById("right");
+  slideLeftElement.value = document.getElementById("left");
+
+  window.addEventListener("scroll", checkScrollPosition);
+  checkScrollPosition();
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", checkScrollPosition);
+});
 </script>
 
 <style scoped>
@@ -102,6 +142,20 @@ const reasons = [
   height: auto;
   align-items: center;
   justify-content: center;
+}
+.right {
+  transform: translateX(-150%);
+}
+.left {
+  transform: translateX(150%);
+}
+.slide-right {
+  transform: translateX(0);
+  transition: transform 2s ease;
+}
+.slide-left {
+  transform: translateX(0);
+  transition: transform 2s ease;
 }
 .join-aside h2,
 p,
