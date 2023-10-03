@@ -77,9 +77,9 @@ const checkScrollPosition = () => {
     const scrollPosition = window.scrollY;
     const slideRight = document.getElementById("right");
     const slideLeft = document.getElementById("left");
-    const windowHeight = window.innerHeight * 0.4;
+    const windowHeight = window.innerHeight;
     const elementRect = joinContainer.value.getBoundingClientRect();
-    const elementPosition = elementRect.top - windowHeight;
+    const elementPosition = elementRect.top + windowHeight * 0.5;
 
     if (scrollPosition >= elementPosition) {
       isScrollAtPosition.value = true;
