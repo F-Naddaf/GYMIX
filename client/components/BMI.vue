@@ -150,7 +150,7 @@ let calcBmi = () => {
 .height-container {
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 45%;
 }
 .input-container input {
   padding: 10px;
