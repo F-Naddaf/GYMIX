@@ -107,7 +107,7 @@ const reviewers = [
     id: "1",
     name: "Farhan Rio",
     class: "Power Lifting",
-    src: "/images/testimonials/photo-1.png",
+    src: "/images/feedback/photo-1.png",
     rate: 5,
     message:
       "I can't say enough good things about this app! It's been a game-changer for me. The user-friendly interface makes it incredibly easy to navigate, and the features are top-notch. I've been using it for months now, and it has greatly improved my productivity. I highly recommend it to anyone looking for a reliable and efficient app.",
@@ -116,7 +116,7 @@ const reviewers = [
     id: "2",
     name: "Emily Johnson",
     class: "Meditation",
-    src: "/images/testimonials/photo-2.png",
+    src: "/images/feedback/photo-2.png",
     rate: 4,
     message:
       "I've been using this app for a while, and it's pretty good. The interface is intuitive, and it has helped me stay on top of my tasks. However, I'd love to see more customization options in future updates. Overall, it's a solid app that gets the job done.",
@@ -125,7 +125,7 @@ const reviewers = [
     id: "3",
     name: "Michael Davis",
     class: "Workout",
-    src: "/images/testimonials/photo-3.png",
+    src: "/images/feedback/photo-3.png",
     rate: 4,
     message:
       "I'm quite impressed with this app. It's been reliable for my needs, and I appreciate the regular updates that enhance its performance. My only minor gripe is the need for more templates, but that's just me being picky. Keep up the good work!",
@@ -134,7 +134,7 @@ const reviewers = [
     id: "4",
     name: "Sarah Williams",
     class: "Cycling",
-    src: "/images/testimonials/photo-4.png",
+    src: "/images/feedback/photo-4.png",
     rate: 5,
     message:
       "This app deserves all the stars! It's become an essential part of my daily routine. The seamless synchronization across devices is a lifesaver. The recent updates have made it even better. I'm more organized and efficient thanks to this app. Keep up the excellent work!",
