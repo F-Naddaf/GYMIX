@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- <SideBar /> -->
     <HeroSection />
     <HomeCard />
     <AboutUs />
@@ -10,7 +9,7 @@
     <BMI />
     <Gallery3D />
     <Trainers />
-    <Testimonials />
+    <Reviews />
   </div>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
   <section class="testimonials-container">
     <div class="testimonials-header">
-      <h2 class="title">Testimonials</h2>
+      <h2 class="title">Feedback</h2>
     </div>
     <div class="testimonials-content">
       <aside class="testimonials-info">
