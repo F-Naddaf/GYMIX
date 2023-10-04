@@ -9,7 +9,7 @@
     <BMI />
     <Gallery3D />
     <Trainers />
-    <Reviews />
+    <Feedback />
   </div>
 </template>
 

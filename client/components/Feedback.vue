@@ -1,10 +1,10 @@
 <template>
-  <section class="testimonials-container">
-    <div class="testimonials-header">
+  <section class="feedback-container">
+    <div class="feedback-header">
       <h2 class="title">Feedback</h2>
     </div>
-    <div class="testimonials-content">
-      <aside class="testimonials-info">
+    <div class="feedback-content">
+      <aside class="feedback-info">
         <h3>What Our Happy Clients say About Us</h3>
         <p>
           I've been a member of Fitness within for about 6 months now and I
@@ -155,7 +155,7 @@ const prevCard = () => {
 </script>
 
 <style scoped>
-.testimonials-container {
+.feedback-container {
   display: flex;
   flex-direction: column;
   margin-bottom: 80px;
@@ -171,14 +171,14 @@ const prevCard = () => {
   box-shadow: rgba(0, 0, 0, 0.5) 0px -5px 16px, rgba(0, 0, 0, 0.5) 0px 5px 16px;
   margin: auto;
 }
-.testimonials-header {
+.feedback-header {
   display: inline-block;
   flex-direction: column;
   align-items: center;
   margin: auto;
   z-index: 10;
 }
-.testimonials-header .title {
+.feedback-header .title {
   position: relative;
   color: var(--secondary-color);
   font-size: 40px;
@@ -218,7 +218,7 @@ const prevCard = () => {
       0 0 80px #ff8e4d, 0 0 160px #ff8e4d;
   }
 }
-.testimonials-header p {
+.feedback-header p {
   font-size: 16px;
   color: var(--text-color);
   opacity: 0.7;
@@ -228,25 +228,25 @@ const prevCard = () => {
   text-align: center;
   margin-bottom: 40px;
 }
-.testimonials-content {
+.feedback-content {
   display: flex;
   width: 90%;
   padding-bottom: 40px;
 }
-.testimonials-info {
+.feedback-info {
   width: 50%;
   display: flex;
   flex-direction: column;
   padding: 10px 0 10px 40px;
 }
-.testimonials-info h3 {
+.feedback-info h3 {
   color: var(--text-color);
   font-size: 38px;
   font-weight: 700;
   width: 70%;
   margin-bottom: 40px;
 }
-.testimonials-info p {
+.feedback-info p {
   color: var(--text-color);
   font-size: 14px;
   width: 70%;
