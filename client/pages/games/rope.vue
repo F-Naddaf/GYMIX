@@ -21,9 +21,9 @@
         :class="isJumping ? 'image-up' : 'image-down'"
       />
     </div>
-    <!-- <p v-show="gameEnded" id="lose-message">Sorry, you lose. Try again!</p>
-        <p v-show="score === 5" id="win-message">Congratulations!</p> -->
-
+    <div v-if="score === 5" class="win-message">
+      <p>Winner...</p>
+    </div>
     <div class="btn-container" v-if="!gameEnded">
       <button class="primary">
         <NuxtLink to="/" @click="restartGame">Back</NuxtLink>
@@ -223,6 +223,62 @@ onMounted(() => {
   bottom: 70px;
   left: 50%;
   transform: translate(-360px, 0);
+}
+.win-message {
+  position: absolute;
+  left: 45%;
+  top: 20%;
+  transform: scale(0);
+  animation: moving 2s ease-out;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+@keyframes moving {
+  0% {
+    transform: scale(0) translateY(20%);
+    opacity: 1;
+    z-index: 4;
+  }
+  100% {
+    transform: scale(3) translateY(50%);
+    opacity: 1;
+    z-index: 4;
+  }
+}
+.win-message p {
+  color: green;
+  font-size: 50px;
+  font-weight: 900;
+  text-shadow: rgb(0, 60, 3) 0px 1px 4px;
+  animation: animate 3s linear infinite;
+}
+@keyframes animate {
+  0%,
+  18%,
+  20%,
+  50.1%,
+  60%,
+  65.1%,
+  80%,
+  90.1%,
+  92% {
+    color: green;
+    text-shadow: none;
+  }
+  18.1%,
+  20.1%,
+  30%,
+  50%,
+  60.1%,
+  65%,
+  80.1%,
+  90%,
+  92.1%,
+  100% {
+    color: rgb(195, 255, 195);
+    text-shadow: 0 0 5px green, 0 0 7px green, 0 0 9px green, 0 0 11px green,
+      0 0 13px green;
+  }
 }
 .btn-container {
   position: absolute;
