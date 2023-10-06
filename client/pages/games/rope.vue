@@ -30,7 +30,7 @@
       </button>
       <button
         class="green"
-        v-if="!startOver"
+        v-if="!startOver && !disable"
         @click="startGame"
         :disabled="startButtonDisabled"
       >
@@ -84,6 +84,7 @@ const images = [
 ];
 
 const instruction = ref(true);
+const disable = ref(false);
 const startOver = ref(false);
 const currentIndex = ref(0);
 const isJumping = ref(false);
@@ -102,6 +103,7 @@ const startButtonDisabled = computed(() => gameEnded.value || isJumping.value);
 
 const startGame = () => {
   intervalId = setInterval(changeImage, 100);
+  disable.value = true;
 };
 
 const restartGame = () => {
@@ -209,19 +211,18 @@ onMounted(() => {
   font-size: 28px;
 }
 .image-container {
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  bottom: 0;
-  left: 0;
 }
 .image-container img {
   position: absolute;
-  bottom: 92px;
-  height: 65%;
+  height: 700px;
+  width: auto;
+  bottom: 70px;
   left: 50%;
-  transform: translateX(-310px);
+  transform: translate(-360px, 0);
 }
 .btn-container {
   position: absolute;
@@ -231,6 +232,9 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.disable {
+  display: none;
 }
 .try-again-container {
   position: absolute;
@@ -277,12 +281,12 @@ onMounted(() => {
 p {
   color: white;
 }
-.image-up {
-  transform: translateY(-20px);
+.image-container img.image-up {
+  transform: translate(-360px, -20px);
   transition: transform 0.1s;
 }
-.image-down {
-  transform: translateY(0);
+.image-container img.image-down {
+  transform: translate(-360px, 0);
   transition: transform 0.1s;
 }
 </style>
