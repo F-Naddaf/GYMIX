@@ -14,7 +14,7 @@
 <script setup>
 import { defineProps, defineEmits } from "vue";
 
-const { emit } = defineEmits(["close-instruction"]);
+const emit = defineEmits(["close-instruction"]);
 
 const props = defineProps({
   message: String,
@@ -23,7 +23,7 @@ const props = defineProps({
 });
 
 const closeInstruction = () => {
-  context.emit("close-instruction");
+  emit("close-instruction");
 };
 </script>
 

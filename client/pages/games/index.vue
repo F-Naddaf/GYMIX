@@ -53,10 +53,12 @@ import { ref, watch } from "vue";
 definePageMeta({
   layout: "custom",
 });
+
 const message =
   "Help the trainer liftting up the weight by pressing the button";
 const span = "HELP";
 const remaining = "fast";
+
 const images = [
   {
     id: "1",
