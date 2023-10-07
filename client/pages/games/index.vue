@@ -62,19 +62,19 @@ const remaining = "fast";
 const images = [
   {
     id: "1",
-    src: "images/games/fitting/photo-22.png",
+    src: "/images/games/fitting/photo-22.png",
   },
   {
     id: "2",
-    src: "images/games/fitting/photo-33.png",
+    src: "/images/games/fitting/photo-33.png",
   },
   {
     id: "3",
-    src: "images/games/fitting/photo-1.png",
+    src: "/images/games/fitting/photo-1.png",
   },
   {
     id: "4",
-    src: "images/games/fitting/photo-0.png",
+    src: "/images/games/fitting/photo-0.png",
   },
 ];
 const percentages = [100, 90, 80, 70, 60, 50, 40, 30, 20, 10];
