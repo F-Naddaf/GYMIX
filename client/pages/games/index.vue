@@ -1,17 +1,12 @@
 <template>
   <div class="weight-lifting">
     <div class="instruction-container" v-if="instruction">
-      <div class="message-container">
-        <div class="close-btn">
-          <button @click="display">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </div>
-        <p>
-          Help the trainer liftting up the weight by pressing the button
-          <span>HELP</span> fast
-        </p>
-      </div>
+      <GameInstructions
+        :message="message"
+        :span="span"
+        :remaining="remaining"
+        @close-instruction="closeInstruction"
+      />
     </div>
     <div class="image-container" v-for="image in images" :key="image.id">
       <img :src="currentImageSrc" :alt="image.id" />
@@ -58,22 +53,28 @@ import { ref, watch } from "vue";
 definePageMeta({
   layout: "custom",
 });
+
+const message =
+  "Help the trainer liftting up the weight by pressing the button";
+const span = "HELP";
+const remaining = "fast";
+
 const images = [
   {
     id: "1",
-    src: "images/games/fitting/photo-22.png",
+    src: "/images/games/fitting/photo-22.png",
   },
   {
     id: "2",
-    src: "images/games/fitting/photo-33.png",
+    src: "/images/games/fitting/photo-33.png",
   },
   {
     id: "3",
-    src: "images/games/fitting/photo-1.png",
+    src: "/images/games/fitting/photo-1.png",
   },
   {
     id: "4",
-    src: "images/games/fitting/photo-0.png",
+    src: "/images/games/fitting/photo-0.png",
   },
 ];
 const percentages = [100, 90, 80, 70, 60, 50, 40, 30, 20, 10];
@@ -101,7 +102,7 @@ const incrementTranslateY = () => {
 
 let imageChangeInterval = null;
 
-const display = () => {
+const closeInstruction = () => {
   instruction.value = false;
 };
 
@@ -149,50 +150,6 @@ watch(translateY, (newTranslateY) => {
   height: 100%;
   background: rgba(0, 0, 0, 0.7);
   z-index: 50;
-}
-.message-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 350px;
-  height: 100px;
-  background: var(--text-color);
-  margin: 20% auto auto auto;
-  border-radius: 10px;
-  padding: 10px;
-}
-.close-btn {
-  display: flex;
-  width: 100%;
-  justify-content: flex-end;
-}
-.close-btn button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 20px;
-  background: var(--primary-color);
-  cursor: pointer;
-}
-.close-btn button i {
-  color: white;
-  padding: 0;
-  margin: 0;
-}
-.message-container p {
-  font-size: 16px;
-  font-weight: 400;
-  color: var(--slogan-color);
-  line-height: 22px;
-  text-align: center;
-  padding-bottom: 10px;
-}
-.message-container p span {
-  color: var(--primary-color);
-  font-weight: 600;
 }
 .image-container {
   position: absolute;
