@@ -26,7 +26,7 @@
     </div>
     <div class="btn-container" v-if="!gameEnded">
       <button class="primary">
-        <NuxtLink to="/" @click="restartGame">Back</NuxtLink>
+        <NuxtLink to="/">Back</NuxtLink>
       </button>
       <button
         class="green"
@@ -106,9 +106,6 @@ const startGame = () => {
   disable.value = true;
 };
 
-const restartGame = () => {
-  location.reload();
-};
 const playAgain = () => {
   startOver.value = true;
   gameEnded.value = false;
