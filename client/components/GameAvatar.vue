@@ -15,6 +15,11 @@
           <p>Would you like to try our game?</p>
         </div>
       </div>
+      <div v-if="isHover" class="hover-container">
+        <div class="message-wrapper">
+          <p>Click Me</p>
+        </div>
+      </div>
       <img
         :src="
           hover ? '/images/avatar/avatar-2.png' : '/images/avatar/avatar-1.png'
@@ -39,6 +44,7 @@ import { ref, defineEmits } from "vue";
 let welcomeMessage = ref(false);
 let playMessage = ref(false);
 let hover = ref(false);
+let isHover = ref(false);
 let closeBtn = ref(false);
 
 const emit = defineEmits(["close-avatar"]);
@@ -57,14 +63,18 @@ const toggleMessages = () => {
 const onMouseOver = () => {
   welcomeMessage.value = false;
   playMessage.value = false;
+  isHover.value = true;
   closeBtn.value = true;
   hover.value = true;
 };
 
 const onMouseLeave = () => {
+  isHover.value = false;
   hover.value = false;
   closeBtn.value = false;
-  toggleMessages();
+  setTimeout(() => {
+    toggleMessages();
+  }, 1500);
 };
 
 const disable = () => {
@@ -93,10 +103,26 @@ img {
   top: -26px;
   left: 0;
 }
+.hover-container {
+  position: absolute;
+  bottom: 26px;
+  left: -10px;
+}
 .play-container {
   position: absolute;
   top: -60px;
   left: 0;
+}
+.hover-container .message-wrapper::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -6px;
+  width: 10px;
+  height: 0;
+  border-right: 12px solid rgb(243, 247, 149);
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
 }
 .message-wrapper {
   width: 100%;
