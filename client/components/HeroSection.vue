@@ -46,6 +46,7 @@ const color = "primary";
   background-size: cover;
   width: 100%;
   height: 80vh;
+  margin-top: -22vh;
   position: relative;
 }
 .hero-wrapper {
