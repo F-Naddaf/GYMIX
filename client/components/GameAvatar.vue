@@ -21,7 +21,13 @@
         "
       />
     </NuxtLink>
-    <button v-if="closeBtn" class="disable-avatar" @click="disable">
+    <button
+      v-if="closeBtn"
+      class="disable-avatar"
+      @click="disable"
+      @mouseover="onMouseOver"
+      @mouseleave="onMouseLeave"
+    >
       <i class="fa-solid fa-xmark"></i>
     </button>
   </div>
@@ -133,7 +139,7 @@ img {
   width: 20px;
   height: 20px;
   border-radius: 15px;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgb(146, 146, 146);
   color: var(--slogan-color);
   z-index: 300;
   border: none;
