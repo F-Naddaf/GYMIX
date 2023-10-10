@@ -1,7 +1,6 @@
 <template>
   <div>
     <AppHeader />
-    <!-- <GameAvatar /> -->
     <main>
       <slot />
     </main>
