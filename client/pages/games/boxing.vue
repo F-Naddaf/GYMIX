@@ -22,10 +22,49 @@
       </p>
     </div>
     <div class="btn-container" id="lose">
-      <button id="startButton">Start</button>
+      <button id="startButton" @click="startGame">Start</button>
     </div>
     <div class="main-container" ref="mainContainer">
-      <img :src="currentImage" alt="boxing-image" ref="avatar" />
+      <div class="boxing-avatar-container" ref="avatar">
+        <div v-if="playAnimation" class="start-boxing-animation">
+          <img
+            src="/images/games/boxing/boxing-avatar-0.png"
+            alt="boxing-image-1"
+            class="main-image"
+          />
+          <img
+            src="/images/games/boxing/boxing-avatar-1.png"
+            alt="boxing-image-1"
+            class="first-image"
+          />
+          <img
+            src="/images/games/boxing/boxing-avatar-2.png"
+            alt="boxing-image-2"
+            class="second-image"
+          />
+        </div>
+        <div v-if="paused" class="pause-boxing-animation">
+          <img
+            src="/images/games/boxing/boxing-avatar-1.png"
+            alt="boxing-image-1"
+            class="first-image"
+          />
+        </div>
+        <div v-if="punchRight" class="right-punch-avatar">
+          <img
+            src="/images/games/boxing/boxing-punch-right.png"
+            alt="right-punch"
+            class="right-punch"
+          />
+        </div>
+        <div v-if="punchleft" class="left-punch-avatar">
+          <img
+            src="/images/games/boxing/boxing-punch-left.png"
+            alt="left-punch"
+            class="left-punch"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -51,62 +90,46 @@ const remaining2 = " on the keyboard";
 const images = [
   {
     id: "1",
+    alt: "boxing image 0",
+    src: "/images/games/boxing/boxing-avatar-0.png",
+  },
+  {
+    id: "2",
     alt: "boxing image 1",
     src: "/images/games/boxing/boxing-avatar-1.png",
   },
   {
-    id: "2",
+    id: "3",
     alt: "boxing image 2",
     src: "/images/games/boxing/boxing-avatar-2.png",
   },
 ];
 
 const punchs = [
-  { id: "3", alt: "right", src: "/images/games/boxing/boxing-punch-right.png" },
-  { id: "4", alt: "left", src: "/images/games/boxing/boxing-punch-left.png" },
+  { id: "4", alt: "right", src: "/images/games/boxing/boxing-punch-right.png" },
+  { id: "5", alt: "left", src: "/images/games/boxing/boxing-punch-left.png" },
 ];
 
 const instruction = ref(true);
 const score = ref(0);
+const playAnimation = ref(false);
+const paused = ref(true);
 const currentIndex = ref(0);
 const blockWidth = 360;
 let step = 90;
 let currentPosition = 0;
 const avatar = ref(null);
 const mainContainer = ref(null);
-
-const punchRightImage = punchs.find((punch) => punch.alt === "right");
-// const punchRightImageSrc = computed(() => {
-//   const punchRightImage = punchs.find((punch) => punch.alt === "right");
-//   return punchRightImage ? punchRightImage.src : "";
-// });
-
-let currentImage = ref(images[0].src);
-
-const handleSKeyPress = () => {
-  //   images[currentIndex.value].src = punchRightImage.src;
-  currentImage.value = punchRightImage.src;
-  //   currentImage.value = punchRightImageSrc.value;
-  //   images[currentIndex.value].src = punchRightImageSrc.value;
-  setTimeout(() => {
-    currentImage.value = images[0].src;
-    // currentImage = punchRightImage.src;
-    // changeImage(); // Resume the changeImage function
-  }, 100);
-};
-
-// const currentImage = computed(() => images[currentIndex.value].src);
+const punchRight = ref(false);
+const punchleft = ref(false);
 
 const closeInstruction = () => {
   instruction.value = false;
 };
 
-// const changeImage = () => {
-//   currentIndex.value = (currentIndex.value + 1) % images.length;
-// };
-
-onMounted(() => {
-  //   setInterval(changeImage, 200);
+const startGame = () => {
+  paused.value = false;
+  playAnimation.value = true;
 
   const handleKeyDown = (event) => {
     if (event.key === "ArrowRight" && currentPosition < 270) {
@@ -118,6 +141,20 @@ onMounted(() => {
       ) {
         avatar.value.style.transform = `translateX(${currentPosition}px)`;
       }
+    } else if (event.key === "d") {
+      playAnimation.value = false;
+      punchRight.value = true;
+      setTimeout(() => {
+        playAnimation.value = true;
+        punchRight.value = false;
+      }, 200);
+    } else if (event.key === "s") {
+      playAnimation.value = false;
+      punchleft.value = true;
+      setTimeout(() => {
+        playAnimation.value = true;
+        punchleft.value = false;
+      }, 200);
     } else if (event.key === "ArrowLeft" && currentPosition > -270) {
       currentPosition -= step;
       if (
@@ -127,18 +164,11 @@ onMounted(() => {
       ) {
         avatar.value.style.transform = `translateX(${currentPosition}px)`;
       }
-    } else if (event.key === "s") {
-      handleSKeyPress();
     }
   };
 
   document.addEventListener("keydown", handleKeyDown);
-  document.addEventListener("keydown", handleSKeyPress);
-
-  onUnmounted(() => {
-    document.removeEventListener("keydown", handleKeyDown);
-  });
-});
+};
 </script>
 
 <style scoped>
@@ -180,7 +210,78 @@ onMounted(() => {
   color: white;
   font-size: 28px;
 }
-img {
+.boxing-avatar-container {
+  position: relative;
+  width: 120px;
+  height: 200px;
+}
+.boxing-avatar-container .start-boxing-animation .main-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: auto;
+}
+.boxing-avatar-container .start-boxing-animation .first-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: auto;
+  opacity: 1;
+  animation: switchFirstImages 0.5s infinite;
+}
+@keyframes switchFirstImages {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+.boxing-avatar-container .start-boxing-animation .second-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: auto;
+  opacity: 0;
+  animation: switchSecondImages 0.5s infinite;
+}
+@keyframes switchSecondImages {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.boxing-avatar-container .pause-boxing-animation .first-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: auto;
+}
+.boxing-avatar-container .right-punch-avatar .right-punch {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: auto;
+}
+.boxing-avatar-container .left-punch-avatar .left-punch {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 120px;
   height: auto;
 }
@@ -191,15 +292,8 @@ img {
   justify-content: center;
   overflow: hidden;
   position: absolute;
-  bottom: 250px;
+  bottom: 320px;
   left: 50%;
   transform: translate(-50%);
-}
-
-.child {
-  width: 300px;
-  height: 50px;
-  background-color: #007bff;
-  transition: transform 0.3s ease;
 }
 </style>
