@@ -74,7 +74,6 @@ let step = 90;
 let currentPosition = 0;
 const avatar = ref(null);
 const mainContainer = ref(null);
-const sKeyPressed = ref(false);
 
 const punchRightImage = punchs.find((punch) => punch.alt === "right");
 // const punchRightImageSrc = computed(() => {
@@ -82,29 +81,32 @@ const punchRightImage = punchs.find((punch) => punch.alt === "right");
 //   return punchRightImage ? punchRightImage.src : "";
 // });
 
+let currentImage = ref(images[0].src);
+
 const handleSKeyPress = () => {
-  sKeyPressed.value = true;
-  images[currentIndex.value].src = punchRightImage.src;
+  //   images[currentIndex.value].src = punchRightImage.src;
+  currentImage.value = punchRightImage.src;
   //   currentImage.value = punchRightImageSrc.value;
   //   images[currentIndex.value].src = punchRightImageSrc.value;
   setTimeout(() => {
-    sKeyPressed.value = false;
-    changeImage(); // Resume the changeImage function
+    currentImage.value = images[0].src;
+    // currentImage = punchRightImage.src;
+    // changeImage(); // Resume the changeImage function
   }, 100);
 };
 
-const currentImage = computed(() => images[currentIndex.value].src);
+// const currentImage = computed(() => images[currentIndex.value].src);
 
 const closeInstruction = () => {
   instruction.value = false;
 };
 
-const changeImage = () => {
-  currentIndex.value = (currentIndex.value + 1) % images.length;
-};
+// const changeImage = () => {
+//   currentIndex.value = (currentIndex.value + 1) % images.length;
+// };
 
 onMounted(() => {
-  setInterval(changeImage, 200);
+  //   setInterval(changeImage, 200);
 
   const handleKeyDown = (event) => {
     if (event.key === "ArrowRight" && currentPosition < 270) {
@@ -125,7 +127,7 @@ onMounted(() => {
       ) {
         avatar.value.style.transform = `translateX(${currentPosition}px)`;
       }
-    } else if (event.key === "s" && !sKeyPressed.value) {
+    } else if (event.key === "s") {
       handleSKeyPress();
     }
   };
