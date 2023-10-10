@@ -18,38 +18,24 @@
     <div class="score-container">
       <p>
         Your Score: <span>{{ score }}</span
-        >/5
+        >/20
       </p>
-    </div>
-    <div class="target-container">
-      <div class="target-wrapper">
-        <div class="punch-target">
-          <div class="first-circle target"></div>
-          <div class="second-circle target"></div>
-          <div class="third-circle target"></div>
-          <div class="forth-circle target"></div>
-          <div class="effect"></div>
-        </div>
-        <div class="puch-pipe"></div>
-      </div>
     </div>
     <div class="btn-container" id="lose">
       <button id="startButton">Start</button>
     </div>
-    <div class="main-container">
-      <div class="child"></div>
+    <div class="main-container" ref="mainContainer">
+      <img :src="currentImage" alt="boxing-image" ref="avatar" />
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted } from "vue";
+import { ref, computed, watch, onMounted, onUnmounted } from "vue";
 
 definePageMeta({
   layout: "custom",
 });
-
-const instruction = ref(true);
 
 const message = "You need to collect ";
 const span = "20";
@@ -62,9 +48,95 @@ const aboutImage4 = "For punching Right use";
 const image4 = "/images/games/boxing/punch-right.png";
 const remaining2 = " on the keyboard";
 
+const images = [
+  {
+    id: "1",
+    alt: "boxing image 1",
+    src: "/images/games/boxing/boxing-avatar-1.png",
+  },
+  {
+    id: "2",
+    alt: "boxing image 2",
+    src: "/images/games/boxing/boxing-avatar-2.png",
+  },
+];
+
+const punchs = [
+  { id: "3", alt: "right", src: "/images/games/boxing/boxing-punch-right.png" },
+  { id: "4", alt: "left", src: "/images/games/boxing/boxing-punch-left.png" },
+];
+
+const instruction = ref(true);
+const score = ref(0);
+const currentIndex = ref(0);
+const blockWidth = 360;
+let step = 90;
+let currentPosition = 0;
+const avatar = ref(null);
+const mainContainer = ref(null);
+const sKeyPressed = ref(false);
+
+const punchRightImage = punchs.find((punch) => punch.alt === "right");
+// const punchRightImageSrc = computed(() => {
+//   const punchRightImage = punchs.find((punch) => punch.alt === "right");
+//   return punchRightImage ? punchRightImage.src : "";
+// });
+
+const handleSKeyPress = () => {
+  sKeyPressed.value = true;
+  images[currentIndex.value].src = punchRightImage.src;
+  //   currentImage.value = punchRightImageSrc.value;
+  //   images[currentIndex.value].src = punchRightImageSrc.value;
+  setTimeout(() => {
+    sKeyPressed.value = false;
+    changeImage(); // Resume the changeImage function
+  }, 100);
+};
+
+const currentImage = computed(() => images[currentIndex.value].src);
+
 const closeInstruction = () => {
   instruction.value = false;
 };
+
+const changeImage = () => {
+  currentIndex.value = (currentIndex.value + 1) % images.length;
+};
+
+onMounted(() => {
+  setInterval(changeImage, 200);
+
+  const handleKeyDown = (event) => {
+    if (event.key === "ArrowRight" && currentPosition < 270) {
+      currentPosition += step;
+      if (
+        avatar.value.offsetWidth &&
+        currentPosition + avatar.value.offsetWidth <=
+          mainContainer.value.offsetWidth
+      ) {
+        avatar.value.style.transform = `translateX(${currentPosition}px)`;
+      }
+    } else if (event.key === "ArrowLeft" && currentPosition > -270) {
+      currentPosition -= step;
+      if (
+        avatar.value.offsetWidth &&
+        currentPosition + avatar.value.offsetWidth <=
+          mainContainer.value.offsetWidth
+      ) {
+        avatar.value.style.transform = `translateX(${currentPosition}px)`;
+      }
+    } else if (event.key === "s" && !sKeyPressed.value) {
+      handleSKeyPress();
+    }
+  };
+
+  document.addEventListener("keydown", handleKeyDown);
+  document.addEventListener("keydown", handleSKeyPress);
+
+  onUnmounted(() => {
+    document.removeEventListener("keydown", handleKeyDown);
+  });
+});
 </script>
 
 <style scoped>
@@ -74,7 +146,7 @@ const closeInstruction = () => {
   flex-direction: column;
   height: 100vh;
   margin: auto;
-  background-image: url("/images/games/rope/rope-background.png");
+  background-image: url("/images/games/boxing/boxing-background.png");
   background-repeat: no-repeat;
   background-position: bottom right;
   background-size: cover;
@@ -106,110 +178,20 @@ const closeInstruction = () => {
   color: white;
   font-size: 28px;
 }
-.target-container {
-  width: 150px;
-  height: 500px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
-.target-wrapper {
-  width: 150px;
-  height: 500px;
-  position: relative;
-  margin: auto;
-  overflow: hidden;
-  transition: transform 1s;
-  transform: scale(0);
-}
-.animation {
-  animation: scaled 0.5s ease-in-out;
-  transform: scale(1);
-  transition: transform 1s;
-  transform-origin: bottom center;
-}
-@keyframes scaled {
-  0% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-.punch-target {
-  position: relative;
-  width: 150px;
-  height: 150px;
-  border-radius: 150px;
-  background: red;
-}
-.target {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
-}
-.first-circle {
+img {
   width: 120px;
-  height: 120px;
-  border-radius: 120px;
-  background: rgb(218, 218, 218);
-}
-.second-circle {
-  width: 90px;
-  height: 90px;
-  border-radius: 90px;
-  background: red;
-}
-.third-circle {
-  width: 60px;
-  height: 60px;
-  border-radius: 60px;
-  background: rgb(218, 218, 218);
-}
-.forth-circle {
-  width: 30px;
-  height: 30px;
-  border-radius: 30px;
-  background: red;
-}
-.effect {
-  position: absolute;
-  bottom: 2px;
-  right: -12px;
-  width: 150px;
-  height: 75px;
-  border-radius: 0 0 150px 150px;
-  background-color: rgba(0, 0, 0, 0.1);
-  z-index: 20;
-  transform: rotate(341deg);
-}
-.puch-pipe {
-  position: absolute;
-  top: 150px;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 350px;
-  width: 15px;
-  background-color: rgb(34, 34, 34);
-  background-image: linear-gradient(
-    to right,
-    #363636,
-    #5e5e5e,
-    #a0a0a0,
-    #5e5e5e,
-    #363636
-  );
-  z-index: -2;
+  height: auto;
 }
 .main-container {
   width: 900px;
-  height: 50px;
-  background-color: #ccc;
+  height: fit-content;
   display: flex;
   justify-content: center;
   overflow: hidden;
+  position: absolute;
+  bottom: 250px;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 .child {
