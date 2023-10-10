@@ -50,6 +50,7 @@ onMounted(() => {
   background: var(--text-color);
   margin: 20% auto auto auto;
   border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
 }
 .close-btn {
   display: flex;
