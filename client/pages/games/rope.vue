@@ -8,6 +8,16 @@
         @close-instruction="closeInstruction"
       />
     </div>
+    <div class="instruction-container" v-if="startGamePopUp">
+      <GameMessage
+        :showStartButton="showStartButton"
+        :showRetryButton="showRetryButton"
+        :showNextButton="showNextButton"
+        @go-back="closeInstruction"
+        @start-game="startGame"
+        @try-again="playAgain"
+      />
+    </div>
     <div class="score-container">
       <p>
         Your Score: <span>{{ score }}</span
@@ -23,38 +33,6 @@
     </div>
     <div v-if="score === 5" class="win-message">
       <p>Winner...</p>
-    </div>
-    <div class="btn-container" v-if="!gameEnded">
-      <button class="primary">
-        <NuxtLink to="/">Back</NuxtLink>
-      </button>
-      <button
-        class="green"
-        v-if="!startOver && !disable"
-        @click="startGame"
-        :disabled="startButtonDisabled"
-      >
-        Start
-      </button>
-    </div>
-    <div class="btn-container" v-if="gameEnded && score === 5">
-      <button v-if="score === 5" class="primary" @click="playAgain">
-        Play again
-      </button>
-      <button class="green">
-        <NuxtLink
-          v-if="score === 5"
-          to="/games/boxing"
-          @click="continueGame"
-          :disabled="!canContinue"
-        >
-          Next
-          <i class="fa-solid fa-angle-right"></i>
-        </NuxtLink>
-      </button>
-    </div>
-    <div class="try-again-container" v-if="gameEnded && score !== 5">
-      <button class="primary" @click="playAgain">Try again</button>
     </div>
   </div>
 </template>
@@ -85,35 +63,45 @@ const images = [
 
 const instruction = ref(true);
 const disable = ref(false);
-const startOver = ref(false);
 const currentIndex = ref(0);
 const isJumping = ref(false);
 const gameEnded = ref(false);
 const canContinue = ref(false);
+const startGamePopUp = ref(false);
+const showStartButton = ref(false);
+const showRetryButton = ref(false);
+const showNextButton = ref(false);
 const score = ref(0);
 const jumpKey = 32;
 let intervalId;
 
 const closeInstruction = () => {
   instruction.value = false;
+  startGamePopUp.value = true;
+  showStartButton.value = true;
 };
 
 const currentImage = computed(() => images[currentIndex.value]);
 const startButtonDisabled = computed(() => gameEnded.value || isJumping.value);
 
 const startGame = () => {
+  startGamePopUp.value = false;
   intervalId = setInterval(changeImage, 100);
   disable.value = true;
 };
 
 const playAgain = () => {
-  startOver.value = true;
+  startGamePopUp.value = false;
+  showRetryButton.value = false;
   gameEnded.value = false;
   score.value = 0;
   startGame();
 };
 
 const continueGame = () => {
+  startGamePopUp.value = true;
+  showRetryButton.value = false;
+  showNextButton.value = true;
   canContinue.value = false;
   currentIndex.value++;
   changeImage();
@@ -123,7 +111,10 @@ const changeImage = () => {
   if (!gameEnded.value) {
     currentIndex.value = (currentIndex.value + 1) % images.length;
     if (score.value >= 5) {
+      showRetryButton.value = false;
       clearInterval(intervalId);
+      startGamePopUp.value = true;
+      showNextButton.value = true;
     }
   } else {
     clearInterval(intervalId);
@@ -140,12 +131,17 @@ const jump = () => {
 
 const endGame = () => {
   gameEnded.value = true;
+  startGamePopUp.value = true;
+  showRetryButton.value = true;
+  showStartButton.value = false;
+  showNextButton.value = false;
 };
 
 const increaseScore = () => {
   score.value++;
   if (score.value === 5) {
-    gameEnded.value = true;
+    gameEnded.value = false;
+    showStartButton.value = false;
   }
 };
 
@@ -224,7 +220,7 @@ onMounted(() => {
 .win-message {
   position: absolute;
   left: 45%;
-  top: 20%;
+  top: 15%;
   transform: scale(0);
   animation: moving 2s ease-out;
   animation-fill-mode: forwards;
@@ -232,12 +228,12 @@ onMounted(() => {
 }
 @keyframes moving {
   0% {
-    transform: scale(0) translateY(20%);
+    transform: scale(0) translateY(50%);
     opacity: 1;
     z-index: 4;
   }
   100% {
-    transform: scale(3) translateY(50%);
+    transform: scale(3) translateY(15%);
     opacity: 1;
     z-index: 4;
   }
