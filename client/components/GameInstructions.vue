@@ -1,13 +1,16 @@
 <template>
-  <div class="message-container">
+  <div class="instuction-wrapper">
     <div class="close-btn">
+      <p class="instuctions">instructions</p>
       <button @click="closeInstruction">
         <i class="fa-solid fa-xmark"></i>
       </button>
     </div>
-    <p>
-      {{ message }} <span>{{ span }}</span> {{ remaining }}
-    </p>
+    <div class="message-container">
+      <p>
+        {{ message }} <span>{{ span }}</span> {{ remaining }}
+      </p>
+    </div>
   </div>
 </template>
 
@@ -25,24 +28,46 @@ const props = defineProps({
 const closeInstruction = () => {
   emit("close-instruction");
 };
+
+const handleKeyDown = (event) => {
+  if (event.key === "Escape") {
+    emit("close-instruction");
+  }
+};
+
+onMounted(() => {
+  document.addEventListener("keydown", handleKeyDown);
+});
 </script>
 
 <style scoped>
-.message-container {
+.instuction-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 350px;
+  width: 450px;
   height: 100px;
   background: var(--text-color);
   margin: 20% auto auto auto;
-  border-radius: 10px;
-  padding: 10px;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
 }
 .close-btn {
   display: flex;
   width: 100%;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--primary-color);
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  padding: 2px 5px;
+}
+.instuctions {
+  color: var(--text-color);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 .close-btn button {
   display: flex;
@@ -51,24 +76,27 @@ const closeInstruction = () => {
   border: none;
   width: 20px;
   height: 20px;
-  border-radius: 20px;
-  background: var(--primary-color);
+  background: none;
   cursor: pointer;
 }
 .close-btn button i {
   color: white;
+  font-size: 16px;
   padding: 0;
   margin: 0;
 }
-.message-container p {
+.instuction-wrapper .message-container {
+  width: 90%;
+  margin: auto;
+}
+.instuction-wrapper .message-container p {
   font-size: 16px;
   font-weight: 400;
   color: var(--slogan-color);
   line-height: 22px;
   text-align: center;
-  padding-bottom: 10px;
 }
-.message-container p span {
+.instuction-wrapper .message-container p span {
   color: var(--primary-color);
   font-weight: 600;
 }

@@ -41,26 +41,28 @@
 <script setup>
 import { ref, defineEmits } from "vue";
 
-let welcomeMessage = ref(false);
-let playMessage = ref(false);
-let hover = ref(false);
-let isHover = ref(false);
-let closeBtn = ref(false);
+const welcomeMessage = ref(false);
+const playMessage = ref(false);
+const hover = ref(false);
+const isHover = ref(false);
+const closeBtn = ref(false);
+let timeout;
 
 const emit = defineEmits(["close-avatar"]);
 
 const toggleMessages = () => {
   welcomeMessage.value = true;
-  setTimeout(() => {
+  timeout = setTimeout(() => {
     welcomeMessage.value = false;
     playMessage.value = true;
-    setTimeout(() => {
+    timeout = setTimeout(() => {
       playMessage.value = false;
     }, 3000);
   }, 3000);
 };
 
 const onMouseOver = () => {
+  clearTimeout(timeout);
   welcomeMessage.value = false;
   playMessage.value = false;
   isHover.value = true;
@@ -72,7 +74,7 @@ const onMouseLeave = () => {
   isHover.value = false;
   hover.value = false;
   closeBtn.value = false;
-  setTimeout(() => {
+  timeout = setTimeout(() => {
     toggleMessages();
   }, 1500);
 };
