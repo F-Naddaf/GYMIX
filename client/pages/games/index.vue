@@ -43,16 +43,6 @@
         </div>
       </div>
     </div>
-    <!-- <div class="game-btn-container">
-      <NuxtLink to="/" class="back-btn">
-        <i class="fa-solid fa-angle-left"></i>
-        Back
-      </NuxtLink>
-      <NuxtLink v-if="translateY <= -100" to="/games/rope" class="next-btn">
-        Next
-        <i class="fa-solid fa-angle-right"></i>
-      </NuxtLink>
-    </div> -->
   </div>
 </template>
 

@@ -15,14 +15,20 @@
         @close-instruction="closeInstruction"
       />
     </div>
+    <div class="instruction-container" v-if="startGamePopUp">
+      <GameMessage
+        :showStartButton="showStartButton"
+        :showRetryButton="showRetryButton"
+        :showAgainButton="showAgainButton"
+        @go-back="closeInstruction"
+        @start-game="startGame"
+      />
+    </div>
     <div class="score-container">
       <p>
         Your Score: <span>{{ score }}</span
         >/20
       </p>
-    </div>
-    <div class="btn-container" id="lose">
-      <button id="startButton" @click="startGame">Start</button>
     </div>
     <div class="main-container" ref="mainContainer">
       <div class="boxing-avatar-container" ref="avatar">
@@ -122,12 +128,20 @@ const avatar = ref(null);
 const mainContainer = ref(null);
 const punchRight = ref(false);
 const punchleft = ref(false);
+const startGamePopUp = ref(false);
+const showStartButton = ref(false);
+const showRetryButton = ref(false);
+const showAgainButton = ref(false);
 
 const closeInstruction = () => {
   instruction.value = false;
+  startGamePopUp.value = true;
+  showStartButton.value = true;
 };
 
 const startGame = () => {
+  startGamePopUp.value = false;
+  showStartButton.value = false;
   paused.value = false;
   playAnimation.value = true;
 
