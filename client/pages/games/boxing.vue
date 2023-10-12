@@ -30,6 +30,11 @@
         >/20
       </p>
     </div>
+    <BoxingBall
+      :started="started"
+      @ball-position="updateBallPosition"
+      @ball-locationX="updateBallLocationX"
+    />
     <div class="main-container" ref="mainContainer">
       <div class="boxing-avatar-container" ref="avatar">
         <div v-if="playAnimation" class="start-boxing-animation">
@@ -76,7 +81,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted, onUnmounted } from "vue";
+import { ref, computed, watch, nextTick, onMounted, onUnmounted } from "vue";
 
 definePageMeta({
   layout: "custom",
@@ -132,6 +137,11 @@ const startGamePopUp = ref(false);
 const showStartButton = ref(false);
 const showRetryButton = ref(false);
 const showAgainButton = ref(false);
+const showLeftBall = ref(false);
+const showRightBall = ref(false);
+const started = ref(false);
+const ballPosition = ref(null);
+const ballLocationX = ref(0);
 
 const closeInstruction = () => {
   instruction.value = false;
@@ -139,11 +149,22 @@ const closeInstruction = () => {
   showStartButton.value = true;
 };
 
+const updateBallPosition = (position) => {
+  ballPosition.value = position;
+};
+const updateBallLocationX = (position) => {
+  //   console.log(position, "position");
+  ballLocationX.value = position;
+};
+
 const startGame = () => {
+  started.value = true;
   startGamePopUp.value = false;
   showStartButton.value = false;
   paused.value = false;
   playAnimation.value = true;
+
+  let keyDPressedTime = 0;
 
   const handleKeyDown = (event) => {
     if (event.key === "ArrowRight" && currentPosition < 270) {
@@ -156,6 +177,19 @@ const startGame = () => {
         avatar.value.style.transform = `translateX(${currentPosition}px)`;
       }
     } else if (event.key === "d") {
+      const currentTime = Date.now();
+      console.log("ballLocationX", ballLocationX.value);
+      console.log("ballPosition", ballPosition.value);
+      console.log("currentPosition", currentPosition);
+      if (
+        ballLocationX.value === currentPosition &&
+        ballPosition.value === "right"
+      ) {
+        console.log("currentTime", currentTime);
+        if (currentTime - keyDPressedTime <= 2000) {
+          score.value += 1;
+        }
+      }
       playAnimation.value = false;
       punchRight.value = true;
       setTimeout(() => {
@@ -180,7 +214,6 @@ const startGame = () => {
       }
     }
   };
-
   document.addEventListener("keydown", handleKeyDown);
 };
 </script>
@@ -223,6 +256,17 @@ const startGame = () => {
 .score-container p span {
   color: white;
   font-size: 28px;
+}
+.main-container {
+  width: 900px;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  position: absolute;
+  bottom: 320px;
+  left: 50%;
+  transform: translate(-50%);
 }
 .boxing-avatar-container {
   position: relative;
@@ -298,16 +342,5 @@ const startGame = () => {
   transform: translate(-50%, -50%);
   width: 120px;
   height: auto;
-}
-.main-container {
-  width: 900px;
-  height: fit-content;
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
-  position: absolute;
-  bottom: 320px;
-  left: 50%;
-  transform: translate(-50%);
 }
 </style>
