@@ -1,21 +1,59 @@
 <template>
   <div>
-    <h2>Program</h2>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus velit
-      mollitia harum quasi cupiditate atque reprehenderit sit! Ut, vitae porro.
-    </p>
+    <PagesHero :title="title" />
+    <div class="weekdays-container">
+      <button v-for="(day, index) in weekDays" :key="index">{{ day }}</button>
+    </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+
+const title = ref("Programs");
+
+const weekDays = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
+</script>
 
 <style scoped>
-h3 {
-  margin-bottom: 20px;
-  font-size: 36px;
+.weekdays-container {
+  display: flex;
+  justify-content: space-evenly;
+  width: 70%;
+  margin: 80px auto;
 }
-p {
-  margin: 20px 0;
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 45px;
+  padding: 10px;
+  border: 1px solid #747474;
+  border-radius: 45px;
+  background: none;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--text-color);
+  cursor: pointer;
+}
+button:hover {
+  background: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  color: white;
+}
+.active {
+  background: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  color: white;
 }
 </style>
