@@ -14,7 +14,7 @@
             <NuxtLink to="/gallery" @click="scrollToTop">Gallery</NuxtLink>
           </li>
           <li>
-            <NuxtLink to="/program" @click="scrollToTop">Program</NuxtLink>
+            <NuxtLink to="/programs" @click="scrollToTop">Programs</NuxtLink>
           </li>
           <li>
             <NuxtLink to="/blog" @click="scrollToTop">Blog</NuxtLink>
