@@ -61,6 +61,8 @@ footer {
   width: 100%;
   height: 420px;
   margin: auto;
+  background: black;
+  box-shadow: 0px 0px 10px var(--primary-color);
 }
 aside {
   width: 30%;

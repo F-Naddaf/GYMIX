@@ -1,5 +1,5 @@
 <template>
-  <section class="about-container" ref="aboutContainer">
+  <section :class="containerClass" ref="aboutContainer">
     <aside class="image-container">
       <div class="image-wrapper">
         <img src="/images/tradmill.png" alt="tradmill" />
@@ -40,10 +40,12 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
 
 const color = "white";
 const aboutContainer = ref(null);
 const isScrollAtPosition = ref(false);
+const route = useRoute();
 
 const checkScrollPosition = () => {
   if (typeof window !== "undefined") {
@@ -61,14 +63,22 @@ const checkScrollPosition = () => {
   }
 };
 
+const containerClass = computed(() => {
+  return route.path === "/" ? "home-about-container" : "about-container";
+});
+
 onMounted(() => {
-  window.addEventListener("scroll", checkScrollPosition);
-  checkScrollPosition();
+  if (route.path === "/") {
+    window.addEventListener("scroll", checkScrollPosition);
+    checkScrollPosition();
+  } else {
+    window.removeEventListener("scroll", checkScrollPosition);
+  }
 });
 </script>
 
 <style scoped>
-.about-container {
+.home-about-container {
   width: 100%;
   display: flex;
   justify-content: space-evenly;
@@ -89,6 +99,25 @@ onMounted(() => {
   transform: perspective(100px) translateZ(-35px);
   opacity: 0;
   transition: opacity 1s, transform 1s;
+}
+.about-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 120px 0;
+  background-color: rgb(34, 34, 34);
+  background-image: linear-gradient(
+    to right,
+    #141414,
+    #202020,
+    #4b4b4b,
+    #202020,
+    #141414
+  );
+  box-shadow: rgba(0, 0, 0, 0.5) 0px -5px 16px, rgba(0, 0, 0, 0.5) 0px 5px 16px;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
 }
 .slide-in {
   transform: perspective(200px) translateZ(0);

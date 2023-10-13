@@ -73,6 +73,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
+  box-shadow: 0px 0px 10px var(--primary-color);
 }
 nav {
   display: flex;
