@@ -24,7 +24,8 @@
 </template>
 
 <script setup>
-const title = "About Us";
+import { ref } from "vue";
+const title = ref("About Us");
 
 const aboutUsVisions = [
   {
