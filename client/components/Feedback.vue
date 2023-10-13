@@ -158,7 +158,6 @@ const prevCard = () => {
 .feedback-container {
   display: flex;
   flex-direction: column;
-  margin-bottom: 80px;
   background-color: rgb(34, 34, 34);
   background-image: linear-gradient(
     to right,
@@ -169,7 +168,7 @@ const prevCard = () => {
     #141414
   );
   box-shadow: rgba(0, 0, 0, 0.5) 0px -5px 16px, rgba(0, 0, 0, 0.5) 0px 5px 16px;
-  margin: auto;
+  margin: 0 auto 80px auto;
 }
 .feedback-header {
   display: inline-block;
