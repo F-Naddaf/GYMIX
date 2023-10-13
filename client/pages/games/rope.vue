@@ -13,6 +13,8 @@
         :showStartButton="showStartButton"
         :showRetryButton="showRetryButton"
         :showNextButton="showNextButton"
+        :showAgainButton="showAgainButton"
+        :nextGame="nextGame"
         @go-back="closeInstruction"
         @start-game="startGame"
         @try-again="playAgain"
@@ -71,6 +73,8 @@ const startGamePopUp = ref(false);
 const showStartButton = ref(false);
 const showRetryButton = ref(false);
 const showNextButton = ref(false);
+const showAgainButton = ref(false);
+const nextGame = ref("/games/boxing");
 const score = ref(0);
 const jumpKey = 32;
 let intervalId;
@@ -102,6 +106,7 @@ const continueGame = () => {
   startGamePopUp.value = true;
   showRetryButton.value = false;
   showNextButton.value = true;
+  showAgainButton.value = true;
   canContinue.value = false;
   currentIndex.value++;
   changeImage();
@@ -115,6 +120,7 @@ const changeImage = () => {
       clearInterval(intervalId);
       startGamePopUp.value = true;
       showNextButton.value = true;
+      showAgainButton.value = true;
     }
   } else {
     clearInterval(intervalId);
@@ -135,6 +141,7 @@ const endGame = () => {
   showRetryButton.value = true;
   showStartButton.value = false;
   showNextButton.value = false;
+  showAgainButton.value = false;
 };
 
 const increaseScore = () => {

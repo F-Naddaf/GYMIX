@@ -8,6 +8,15 @@
         @close-instruction="closeInstruction"
       />
     </div>
+    <div class="instruction-container" v-if="startGamePopUp">
+      <GameMessage
+        :showStartButton="showStartButton"
+        :showNextButton="showNextButton"
+        :nextGame="nextGame"
+        @go-back="closeInstruction"
+        @start-game="startGame"
+      />
+    </div>
     <div class="image-container" v-for="image in images" :key="image.id">
       <img :src="currentImageSrc" :alt="image.id" />
     </div>
@@ -33,16 +42,6 @@
           <button @click="startTranslate">HELP</button>
         </div>
       </div>
-    </div>
-    <div class="game-btn-container">
-      <NuxtLink to="/" class="back-btn">
-        <i class="fa-solid fa-angle-left"></i>
-        Back
-      </NuxtLink>
-      <NuxtLink v-if="translateY <= -100" to="/games/rope" class="next-btn">
-        Next
-        <i class="fa-solid fa-angle-right"></i>
-      </NuxtLink>
     </div>
   </div>
 </template>
@@ -82,6 +81,10 @@ const translateY = ref(0);
 const isClicked = ref(false);
 const currentImageIndex = ref(0);
 const instruction = ref(true);
+const startGamePopUp = ref(false);
+const showStartButton = ref(false);
+const showNextButton = ref(false);
+const nextGame = ref("/games/rope");
 const currentImageSrc = ref(images[currentImageIndex.value].src);
 
 const startTranslate = () => {
@@ -93,7 +96,7 @@ const startTranslate = () => {
 };
 
 const incrementTranslateY = () => {
-  if (translateY.value !== 0 && translateY.value >= -100) {
+  if (translateY.value !== 0 && translateY.value > -100) {
     setTimeout(() => {
       translateY.value += 5;
     }, 5);
@@ -104,11 +107,20 @@ let imageChangeInterval = null;
 
 const closeInstruction = () => {
   instruction.value = false;
+  startGamePopUp.value = true;
+  showStartButton.value = true;
+};
+
+const startGame = () => {
+  startGamePopUp.value = false;
 };
 
 const changeImage = () => {
   if (translateY.value <= -100) {
     currentImageSrc.value = images[3].src;
+    startGamePopUp.value = true;
+    showNextButton.value = true;
+    showStartButton.value = false;
   } else if (translateY.value < -50 && imageChangeInterval) {
     clearInterval(imageChangeInterval);
     imageChangeInterval = null;

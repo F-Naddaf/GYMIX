@@ -2,7 +2,9 @@
   <div class="game-message">
     <p v-if="showStartButton" class="start">{{ startGameMessage }}</p>
     <p v-if="showRetryButton" class="lose">{{ loseTheGame }}</p>
-    <p v-if="showNextButton" class="start">{{ winTheGame }}</p>
+    <p v-if="showNextButton || showAgainButton" class="start">
+      {{ winTheGame }}
+    </p>
     <div class="button-container">
       <button @click="back" class="back">
         <NuxtLink to="/">Back</NuxtLink>
@@ -13,11 +15,11 @@
       <button v-if="showRetryButton" class="play" @click="retryGame">
         Retry
       </button>
-      <button v-if="showNextButton" class="again" @click="retryGame">
+      <button v-if="showAgainButton" class="again" @click="retryGame">
         Play Again
       </button>
       <button v-if="showNextButton" class="play">
-        <NuxtLink to="/games/boxing">Next</NuxtLink>
+        <NuxtLink :to="nextGame">Next</NuxtLink>
       </button>
     </div>
   </div>
@@ -33,6 +35,8 @@ const props = defineProps({
   showStartButton: Boolean,
   showRetryButton: Boolean,
   showNextButton: Boolean,
+  showAgainButton: Boolean,
+  nextGame: String,
 });
 
 const startGameMessage = "Welcome to the game!";

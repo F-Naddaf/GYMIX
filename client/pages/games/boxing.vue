@@ -15,15 +15,27 @@
         @close-instruction="closeInstruction"
       />
     </div>
+    <div class="instruction-container" v-if="startGamePopUp">
+      <GameMessage
+        :showStartButton="showStartButton"
+        :showRetryButton="showRetryButton"
+        :showAgainButton="showAgainButton"
+        @go-back="closeInstruction"
+        @start-game="startGame"
+      />
+    </div>
     <div class="score-container">
       <p>
         Your Score: <span>{{ score }}</span
         >/20
       </p>
     </div>
-    <div class="btn-container" id="lose">
-      <button id="startButton" @click="startGame">Start</button>
-    </div>
+    <BoxingBall
+      :started="started"
+      @ball-position="updateBallPosition"
+      @ball-locationX="updateBallLocationX"
+      @ball-locationY="updateBallLocationY"
+    />
     <div class="main-container" ref="mainContainer">
       <div class="boxing-avatar-container" ref="avatar">
         <div v-if="playAnimation" class="start-boxing-animation">
@@ -70,7 +82,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted, onUnmounted } from "vue";
+import { ref, computed, watch, nextTick, onMounted, onUnmounted } from "vue";
 
 definePageMeta({
   layout: "custom",
@@ -122,14 +134,43 @@ const avatar = ref(null);
 const mainContainer = ref(null);
 const punchRight = ref(false);
 const punchleft = ref(false);
+const startGamePopUp = ref(false);
+const showStartButton = ref(false);
+const showRetryButton = ref(false);
+const showAgainButton = ref(false);
+const showLeftBall = ref(false);
+const showRightBall = ref(false);
+const started = ref(false);
+const ballPosition = ref(null);
+const ballLocationX = ref(0);
+const ballLocationY = ref(0);
 
 const closeInstruction = () => {
   instruction.value = false;
+  startGamePopUp.value = true;
+  showStartButton.value = true;
+};
+
+const updateBallPosition = (position) => {
+  ballPosition.value = position;
+};
+const updateBallLocationX = (position) => {
+  //   console.log(position, "position");
+  ballLocationX.value = position;
+};
+
+const updateBallLocationY = (translateY) => {
+  ballLocationY.value = translateY;
 };
 
 const startGame = () => {
+  started.value = true;
+  startGamePopUp.value = false;
+  showStartButton.value = false;
   paused.value = false;
   playAnimation.value = true;
+
+  let keyDPressedTime = 0;
 
   const handleKeyDown = (event) => {
     if (event.key === "ArrowRight" && currentPosition < 270) {
@@ -142,6 +183,18 @@ const startGame = () => {
         avatar.value.style.transform = `translateX(${currentPosition}px)`;
       }
     } else if (event.key === "d") {
+      if (
+        (ballLocationX.value === currentPosition &&
+          ballPosition.value === "right") ||
+        (ballLocationX.value === currentPosition - step &&
+          ballPosition.value === "right" &&
+          ballLocationY.value >= 130 &&
+          ballLocationY.value <= 190)
+      ) {
+        score.value += 1;
+      } else {
+        return;
+      }
       playAnimation.value = false;
       punchRight.value = true;
       setTimeout(() => {
@@ -149,6 +202,18 @@ const startGame = () => {
         punchRight.value = false;
       }, 200);
     } else if (event.key === "s") {
+      if (
+        (ballLocationX.value === currentPosition &&
+          ballPosition.value === "right") ||
+        (ballLocationX.value === currentPosition - step &&
+          ballPosition.value === "right" &&
+          ballLocationY.value >= 130 &&
+          ballLocationY.value <= 190)
+      ) {
+        score.value += 1;
+      } else {
+        return;
+      }
       playAnimation.value = false;
       punchleft.value = true;
       setTimeout(() => {
@@ -166,7 +231,6 @@ const startGame = () => {
       }
     }
   };
-
   document.addEventListener("keydown", handleKeyDown);
 };
 </script>
@@ -209,6 +273,17 @@ const startGame = () => {
 .score-container p span {
   color: white;
   font-size: 28px;
+}
+.main-container {
+  width: 900px;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  position: absolute;
+  bottom: 320px;
+  left: 50%;
+  transform: translate(-50%);
 }
 .boxing-avatar-container {
   position: relative;
@@ -284,16 +359,5 @@ const startGame = () => {
   transform: translate(-50%, -50%);
   width: 120px;
   height: auto;
-}
-.main-container {
-  width: 900px;
-  height: fit-content;
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
-  position: absolute;
-  bottom: 320px;
-  left: 50%;
-  transform: translate(-50%);
 }
 </style>
