@@ -34,6 +34,7 @@
       :started="started"
       @ball-position="updateBallPosition"
       @ball-locationX="updateBallLocationX"
+      @ball-locationY="updateBallLocationY"
     />
     <div class="main-container" ref="mainContainer">
       <div class="boxing-avatar-container" ref="avatar">
@@ -142,6 +143,7 @@ const showRightBall = ref(false);
 const started = ref(false);
 const ballPosition = ref(null);
 const ballLocationX = ref(0);
+const ballLocationY = ref(0);
 
 const closeInstruction = () => {
   instruction.value = false;
@@ -155,6 +157,10 @@ const updateBallPosition = (position) => {
 const updateBallLocationX = (position) => {
   //   console.log(position, "position");
   ballLocationX.value = position;
+};
+
+const updateBallLocationY = (translateY) => {
+  ballLocationY.value = translateY;
 };
 
 const startGame = () => {
@@ -177,18 +183,17 @@ const startGame = () => {
         avatar.value.style.transform = `translateX(${currentPosition}px)`;
       }
     } else if (event.key === "d") {
-      const currentTime = Date.now();
-      console.log("ballLocationX", ballLocationX.value);
-      console.log("ballPosition", ballPosition.value);
-      console.log("currentPosition", currentPosition);
       if (
-        ballLocationX.value === currentPosition &&
-        ballPosition.value === "right"
+        (ballLocationX.value === currentPosition &&
+          ballPosition.value === "right") ||
+        (ballLocationX.value === currentPosition - step &&
+          ballPosition.value === "right" &&
+          ballLocationY.value >= 130 &&
+          ballLocationY.value <= 190)
       ) {
-        console.log("currentTime", currentTime);
-        if (currentTime - keyDPressedTime <= 2000) {
-          score.value += 1;
-        }
+        score.value += 1;
+      } else {
+        return;
       }
       playAnimation.value = false;
       punchRight.value = true;
@@ -197,6 +202,18 @@ const startGame = () => {
         punchRight.value = false;
       }, 200);
     } else if (event.key === "s") {
+      if (
+        (ballLocationX.value === currentPosition &&
+          ballPosition.value === "right") ||
+        (ballLocationX.value === currentPosition - step &&
+          ballPosition.value === "right" &&
+          ballLocationY.value >= 130 &&
+          ballLocationY.value <= 190)
+      ) {
+        score.value += 1;
+      } else {
+        return;
+      }
       playAnimation.value = false;
       punchleft.value = true;
       setTimeout(() => {
