@@ -43,6 +43,7 @@ const props = defineProps({
   font-size: 28px;
   font-weight: 800;
   letter-spacing: 3px;
+  padding-bottom: 5px;
 }
 .title-underline {
   width: 0px;
@@ -54,13 +55,13 @@ const props = defineProps({
   0% {
     width: 0px;
   }
-  70% {
+  50% {
     width: 140px;
     transform: translateX(0px);
   }
   100% {
-    width: 80px;
-    transform: translateX(60px);
+    width: 70px;
+    transform: translateX(70px);
   }
 }
 
