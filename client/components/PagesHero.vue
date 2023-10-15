@@ -72,12 +72,4 @@ const props = defineProps({
     transform: translateX(0px);
   }
 }
-
-h3 {
-  margin-bottom: 20px;
-  font-size: 36px;
-}
-p {
-  margin: 20px 0;
-}
 </style>
