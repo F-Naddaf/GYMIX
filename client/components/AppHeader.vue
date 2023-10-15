@@ -1,5 +1,5 @@
 <template>
-  <header>
+<header :data-shadow="isJoinButtonHovered">
     <nav>
       <Logo background="header" />
       <div class="routes">
@@ -34,7 +34,11 @@
         <button class="btn-menu" @click="openSidebar">
           <i class="fa-solid fa-chart-bar"></i>
         </button>
-        <button class="btn-join">
+        <button
+          class="btn-join"
+          @mouseover="isJoinButtonHovered = true"
+          @mouseout="isJoinButtonHovered = false"
+        >
           <h3>Join class now</h3>
         </button>
       </div>
@@ -57,6 +61,7 @@ const scrollToTop = () => {
 };
 
 const isSidebarVisible = ref(false);
+const isJoinButtonHovered = ref(false);
 
 const openSidebar = () => {
   isSidebarVisible.value = !isSidebarVisible.value;
@@ -141,7 +146,10 @@ i {
 .btns-container .btn-menu:hover i {
   color: var(--primary-hover);
 }
-.btns-container .btn-join:hover {
-  background-color: var(--primary-btn-hover);
+.btn-join:hover {
+  background-color: var(--secondary-color);
+}
+header[data-shadow="true"] {
+  box-shadow: 0px 0px 10px var(--secondary-color);
 }
 </style>
