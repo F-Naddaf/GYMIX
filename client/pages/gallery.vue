@@ -1,22 +1,118 @@
 <template>
-    <div>
-      <h2>Gallery</h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus velit
-        mollitia harum quasi cupiditate atque reprehenderit sit! Ut, vitae porro.
-      </p>
+  <div>
+    <PagesHero :title="title" />
+    <div class="images-container">
+      <div
+        class="image-wrapper"
+        v-for="(image, index) in visibleImages"
+        :key="index"
+      >
+        <img :src="image" alt="Image" />
+      </div>
     </div>
-  </template>
-  
-  <script setup></script>
-  
-  <style scoped>
-  h3 {
-    margin-bottom: 20px;
-    font-size: 36px;
+    <div class="pagination">
+      <button @click="changePage(-1)" :disabled="currentPage === 1">
+        <i class="fa-solid fa-angles-left"></i>
+      </button>
+      <span class="page-number">{{ currentPage }}</span>
+      <button @click="changePage(1)" :disabled="currentPage === totalPages">
+        <i class="fa-solid fa-angles-right"></i>
+      </button>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref, computed } from "vue";
+
+const title = ref("Gallery");
+
+const imageList = ref([
+  "images/gallery/photo-1.png",
+  "images/gallery/photo-2.png",
+  "images/gallery/photo-3.png",
+  "images/gallery/photo-4.png",
+  "images/gallery/photo-5.png",
+  "images/gallery/photo-6.png",
+  "images/gallery/photo-7.png",
+  "images/gallery/photo-8.png",
+  "images/gallery/photo-9.png",
+  "images/gallery/photo-10.png",
+]);
+
+const imagesPerPage = 9;
+const currentPage = ref(1);
+
+const totalPages = computed(() =>
+  Math.ceil(imageList.value.length / imagesPerPage)
+);
+
+const visibleImages = computed(() => {
+  const startIndex = (currentPage.value - 1) * imagesPerPage;
+  const endIndex = startIndex + imagesPerPage;
+  return imageList.value.slice(startIndex, endIndex);
+});
+
+function changePage(step) {
+  const newPage = currentPage.value + step;
+  if (newPage >= 1 && newPage <= totalPages.value) {
+    currentPage.value = newPage;
   }
-  p {
-    margin: 20px 0;
-  }
-  </style>
-  
+}
+</script>
+
+<style scoped>
+.images-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  width: 80%;
+  margin: 80px auto;
+  max-width: 100%;
+}
+.image-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 350px;
+  height: 350px;
+  border: none;
+  overflow: hidden;
+  position: relative;
+  border-radius: 20px;
+  z-index: 5;
+  box-shadow: rgb(255 61 74) 0px 0px 8px 2px;
+}
+img {
+  object-fit: cover;
+  width: auto;
+  height: 100%;
+  z-index: 10;
+}
+.pagination {
+  text-align: center;
+  margin: 20px 0 80px 0;
+}
+button {
+  margin: 0 10px;
+  padding: 6px 15px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+button i {
+  font-size: 16px;
+}
+.page-number {
+  font-size: 18px;
+  padding: 0 10px;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+</style>

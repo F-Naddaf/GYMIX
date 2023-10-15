@@ -25,10 +25,14 @@ const props = defineProps({
   position: relative;
 }
 .title-contianer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 300px;
   position: absolute;
   top: 50%;
   left: -10%;
-  animation: swipe 0.8s ease-in-out forwards;
+  animation: swipe-e897584b 0.8s ease-in-out forwards;
 }
 @keyframes swipe {
   0% {
@@ -46,9 +50,13 @@ const props = defineProps({
   padding-bottom: 5px;
 }
 .title-underline {
+  position: absolute;
+  bottom: 0;
+  right: 0;
   width: 0px;
   height: 3px;
   background: var(--primary-color);
+  transform: translateX(-140px);
   animation: showLine 1s ease-in-out forwards 0.8s;
 }
 @keyframes showLine {
@@ -60,8 +68,8 @@ const props = defineProps({
     transform: translateX(0px);
   }
   100% {
-    width: 70px;
-    transform: translateX(70px);
+    width: 60px;
+    transform: translateX(0px);
   }
 }
 
