@@ -17,7 +17,7 @@
           Class Name: <span>{{ classData.Class }}</span>
         </li>
         <li>
-          Timing:<span> {{ classData.Timing }}</span>
+          Timing:<span> {{ classData.timing }}</span>
         </li>
         <li>
           Trainer: <span>{{ classData.trainer }} </span>
