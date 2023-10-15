@@ -4,17 +4,26 @@
     <div class="images-container">
       <div
         class="image-wrapper"
-        v-for="(image, index) in imageList"
+        v-for="(image, index) in visibleImages"
         :key="index"
       >
         <img :src="image" alt="Image" />
       </div>
     </div>
+    <div class="pagination">
+      <button @click="changePage(-1)" :disabled="currentPage === 1">
+        <i class="fa-solid fa-angles-left"></i>
+      </button>
+      <span class="page-number">{{ currentPage }}</span>
+      <button @click="changePage(1)" :disabled="currentPage === totalPages">
+        <i class="fa-solid fa-angles-right"></i>
+      </button>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 const title = ref("Gallery");
 
@@ -30,6 +39,26 @@ const imageList = ref([
   "images/gallery/photo-9.png",
   "images/gallery/photo-10.png",
 ]);
+
+const imagesPerPage = 9;
+const currentPage = ref(1);
+
+const totalPages = computed(() =>
+  Math.ceil(imageList.value.length / imagesPerPage)
+);
+
+const visibleImages = computed(() => {
+  const startIndex = (currentPage.value - 1) * imagesPerPage;
+  const endIndex = startIndex + imagesPerPage;
+  return imageList.value.slice(startIndex, endIndex);
+});
+
+function changePage(step) {
+  const newPage = currentPage.value + step;
+  if (newPage >= 1 && newPage <= totalPages.value) {
+    currentPage.value = newPage;
+  }
+}
 </script>
 
 <style scoped>
@@ -59,5 +88,31 @@ img {
   width: auto;
   height: 100%;
   z-index: 10;
+}
+.pagination {
+  text-align: center;
+  margin: 20px 0 80px 0;
+}
+button {
+  margin: 0 10px;
+  padding: 6px 15px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+button i {
+  font-size: 16px;
+}
+.page-number {
+  font-size: 18px;
+  padding: 0 10px;
+  font-weight: 700;
+  color: var(--primary-color);
 }
 </style>
