@@ -32,7 +32,7 @@
 
 <script setup>
 import Programs from "../data/porgrams.js";
-import { ref, onMounted, computed } from "vue";
+import { ref, computed } from "vue";
 
 const title = ref("Programs");
 const programsArray = Programs;
