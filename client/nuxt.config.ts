@@ -1,4 +1,4 @@
-export default defineNuxtConfig({
+export default {
   modules: ["@nuxtjs/google-fonts"],
 
   googleFonts: {
@@ -9,4 +9,7 @@ export default defineNuxtConfig({
     },
   },
   css: ["@fortawesome/fontawesome-free/css/all.css", "/assets/css/style.css"],
-});
+  publicRunTimeConfig: {
+    GOOGLE_MAP_KEY: process.env.VUE_APP_GOOGLE_MAP_KEY,
+  },
+};

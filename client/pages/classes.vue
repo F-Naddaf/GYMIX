@@ -96,6 +96,7 @@ article {
   position: relative;
   border-radius: 20px;
   overflow: hidden;
+  box-shadow: rgba(255, 255, 255, 0.5) 0px 0px 15px;
 }
 img {
   object-fit: cover;
