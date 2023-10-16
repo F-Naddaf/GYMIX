@@ -53,12 +53,14 @@ const checkScrollPosition = () => {
     const container = aboutContainer.value;
     const windowHeight = window.innerHeight;
 
-    if (scrollPosition >= windowHeight * 0.6) {
-      isScrollAtPosition.value = true;
-      container.classList.add("slide-in");
-    } else {
-      isScrollAtPosition.value = false;
-      container.classList.remove("slide-in");
+    if (container) {
+      if (scrollPosition >= windowHeight * 0.6) {
+        isScrollAtPosition.value = true;
+        container.classList.add("slide-in");
+      } else {
+        isScrollAtPosition.value = false;
+        container.classList.remove("slide-in");
+      }
     }
   }
 };
