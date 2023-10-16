@@ -9,4 +9,7 @@ export default defineNuxtConfig({
     },
   },
   css: ["@fortawesome/fontawesome-free/css/all.css", "/assets/css/style.css"],
+  runtimeConfig: {
+    googleMapsApiKey: "AIzaSyDNNpH1sD9o7WUF8alRkoLIk2nyEY7mXQ8",
+  },
 });

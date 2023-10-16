@@ -73,24 +73,52 @@
           <button class="submit-btn">Submit</button>
         </form>
       </section>
-      <section class="google-map"></section>
+      <section class="google-map">
+        <div id="map"></div>
+      </section>
     </main>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus velit
-      mollitia harum quasi cupiditate atque reprehenderit sit! Ut, vitae porro.
-    </p>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
 const title = ref("Contact Us");
+
+const googleMapsApiKey = ref("AIzaSyDNNpH1sD9o7WUF8alRkoLIk2nyEY7mXQ8");
+let LATITUDE = 52.087177363772376;
+let LONGITUDE = 4.869294507439261;
+
+const loadGoogleMapsScript = () => {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${googleMapsApiKey.value}`;
+    script.async = true;
+    script.defer = true;
+    script.onload = resolve;
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
+};
+
+onMounted(async () => {
+  await loadGoogleMapsScript();
+  const map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: LATITUDE, lng: LONGITUDE },
+    zoom: 10,
+  });
+  new google.maps.Marker({
+    position: { lat: LATITUDE, lng: LONGITUDE },
+    map: map,
+    title: "Marker Title",
+  });
+});
 </script>
 
 <style scoped>
 main {
   display: flex;
+  flex-direction: column;
   align-items: center;
   width: 100%;
   height: 100%;
@@ -215,5 +243,14 @@ button {
   font-size: 18px;
   font-weight: 800;
   text-transform: uppercase;
+}
+.google-map {
+  width: 80%;
+  height: 500px;
+  margin: 80px 0;
+}
+#map {
+  width: 100%;
+  height: 100%;
 }
 </style>
