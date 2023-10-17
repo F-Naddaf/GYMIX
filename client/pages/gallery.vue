@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PagesHero :title="title" />
+    <PagesHero :title="title" id="images" />
     <div class="images-container">
       <div
         class="image-wrapper"
@@ -38,6 +38,13 @@ const imageList = ref([
   "images/gallery/photo-8.png",
   "images/gallery/photo-9.png",
   "images/gallery/photo-10.png",
+  "images/gallery/photo-11.png",
+  "images/gallery/photo-12.png",
+  "images/gallery/photo-13.png",
+  "images/gallery/photo-14.png",
+  "images/gallery/photo-15.png",
+  "images/gallery/photo-16.png",
+  "images/gallery/photo-17.png",
 ]);
 
 const imagesPerPage = 9;
@@ -55,8 +62,12 @@ const visibleImages = computed(() => {
 
 function changePage(step) {
   const newPage = currentPage.value + step;
-  if (newPage >= 1 && newPage <= totalPages.value) {
-    currentPage.value = newPage;
+  const imagesContainer = document.getElementById("images");
+  if (imagesContainer) {
+    imagesContainer.scrollIntoView({ behavior: "smooth" });
+    if (newPage >= 1 && newPage <= totalPages.value) {
+      currentPage.value = newPage;
+    }
   }
 }
 </script>
