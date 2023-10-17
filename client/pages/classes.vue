@@ -11,7 +11,7 @@
               <i class="fa-regular fa-user"></i> {{ ourClass.trainer }}
               <i class="fa-regular fa-clock"></i> {{ ourClass.timing }}
             </p>
-            <button>Join Now</button>
+            <NuxtLink to="/contact">Join Now</NuxtLink>
           </div>
         </article>
       </div>
@@ -135,7 +135,10 @@ img {
   color: var(--text-color);
   padding: 0 10px;
 }
-.class-details button {
+.class-details a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: var(--primary-color);
   padding: 10px;
   font-size: 18px;
