@@ -1,5 +1,5 @@
 <template>
-<header :data-shadow="isJoinButtonHovered">
+  <header :data-shadow="isJoinButtonHovered">
     <nav>
       <Logo background="header" />
       <div class="routes">
@@ -39,7 +39,9 @@
           @mouseover="isJoinButtonHovered = true"
           @mouseout="isJoinButtonHovered = false"
         >
-          <h3>Join class now</h3>
+          <NuxtLink to="/login">
+            <h3>Join class now</h3>
+          </NuxtLink>
         </button>
       </div>
     </nav>
