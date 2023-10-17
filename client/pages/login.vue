@@ -189,7 +189,7 @@ form input {
   top: 0;
   left: 0;
   right: 0;
-  transform: translateY(105%);
+  transform: translateY(110%);
   transition: 0.8s ease-in-out;
 }
 .show-register {

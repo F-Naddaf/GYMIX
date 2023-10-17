@@ -47,7 +47,7 @@ const toggleRegister = () => {
   height: auto;
   margin: auto;
   padding: 20px 20px 100px 20px;
-  border-radius: 60% / 10%;
+  border-radius: 70% / 15%;
   background: var(--secondary-color);
   z-index: 20;
 }
@@ -67,6 +67,7 @@ const toggleRegister = () => {
   letter-spacing: 2px;
   cursor: pointer;
   transition: 0.8s ease-in-out;
+  margin-top: -8px;
 }
 .header-btn .big-text {
   color: white;
