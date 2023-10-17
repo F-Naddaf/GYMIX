@@ -11,7 +11,7 @@
       </article>
       <div class="btn-container">
         <Button
-          to="/classes"
+          to="/programs"
           buttonText="Join with us"
           :color="color"
           class="button"

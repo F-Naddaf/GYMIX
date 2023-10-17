@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="wrapper">
+    <div :class="!show ? 'wrapper' : 'open'">
       <div class="header-btn">
         <button @click="toggleRegister" :class="show ? 'big-text' : 'normal'">
           Register
@@ -39,6 +39,19 @@ const toggleRegister = () => {
 
 <style scoped>
 .wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 420px;
+  height: auto;
+  margin: auto;
+  padding: 20px 20px 100px 20px;
+  border-radius: 70% / 15%;
+  background: var(--primary-color);
+  z-index: 20;
+}
+.open {
   display: flex;
   flex-direction: column;
   align-items: center;

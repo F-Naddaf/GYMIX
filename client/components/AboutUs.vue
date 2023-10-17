@@ -32,7 +32,7 @@
             <p>Fancy GYM Machines</p>
           </article>
         </section>
-        <Button to="/classes" buttonText="Take a Tour" :color="color" />
+        <Button to="/about" buttonText="Take a Tour" :color="color" />
       </div>
     </aside>
   </section>

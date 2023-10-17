@@ -29,7 +29,9 @@
       </div>
       <div class="btns-container">
         <button class="btn-user">
-          <i class="fa-regular fa-user"></i>
+          <NuxtLink to="/login">
+            <i class="fa-regular fa-user"></i>
+          </NuxtLink>
         </button>
         <button class="btn-menu" @click="openSidebar">
           <i class="fa-solid fa-chart-bar"></i>
