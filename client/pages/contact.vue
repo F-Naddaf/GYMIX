@@ -91,8 +91,14 @@ let LONGITUDE = 4.869294507439261;
 
 const loadGoogleMapsScript = () => {
   return new Promise((resolve, reject) => {
+    const getGoogleById = document.getElementById("googleMapsScript");
+    if (getGoogleById) {
+      resolve();
+      return;
+    }
     const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${googleMapsApiKey.value}`;
+    script.id = "googleMapsScript";
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${googleMapsApiKey.value}&callback=initMap`;
     script.async = true;
     script.defer = true;
     script.onload = resolve;

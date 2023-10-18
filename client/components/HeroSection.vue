@@ -152,4 +152,8 @@ h2 {
 .hero-social i:hover {
   color: var(--primary-color);
 }
+
+@media screen and (min-width: 600px) and (max-width: 768px) {
+  
+}
 </style>

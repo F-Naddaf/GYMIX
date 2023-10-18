@@ -25,6 +25,7 @@ const emits = defineEmits([
   "ball-position",
   "ball-locationX",
   "ball-locationY",
+  "ball-quantity",
 ]);
 
 const challengeContainer = ref(null);
@@ -32,8 +33,8 @@ const leftBall = ref(null);
 const rightBall = ref(null);
 const showLeftBall = ref(false);
 const showRightBall = ref(false);
+let remainingBalls = ref(7);
 let translateY = 0;
-let timeout;
 
 let myInterval;
 
@@ -56,7 +57,6 @@ const moveBall = () => {
   } else if (challengeContainer.value) {
     translateY += 10;
     emits("ball-locationY", translateY);
-    // console.log("trans :", translateY);
     challengeContainer.value.style.transform = `translate(-50%, ${translateY}px)`;
   }
 };
@@ -98,8 +98,13 @@ const generateRandomBallPositions = async (iterations) => {
         showLeftBall.value = false;
       }, 2000);
     }
+    iterations -= 1;
     setTimeout(() => {
-      generateRandomBallPositions(iterations - 1);
+      generateRandomBallPositions(iterations);
+      remainingBalls.value = iterations;
+      console.log("remainingBalls", remainingBalls.value);
+
+      emits("ball-quantity", remainingBalls.value);
     }, 3000);
   }
 };
@@ -108,7 +113,7 @@ watch(
   () => props.started,
   (newValue, oldValue) => {
     if (newValue === true) {
-      generateRandomBallPositions(30);
+      generateRandomBallPositions(7);
     }
   }
 );
