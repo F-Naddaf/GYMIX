@@ -33,6 +33,7 @@ const leftBall = ref(null);
 const rightBall = ref(null);
 const showLeftBall = ref(false);
 const showRightBall = ref(false);
+const gameIsStarted = ref(false);
 let remainingBalls = ref(7);
 let translateY = 0;
 
@@ -62,7 +63,7 @@ const moveBall = () => {
 };
 
 const generateRandomBallPositions = async (iterations) => {
-  if (iterations > 0) {
+  if (iterations > 0 && gameIsStarted.value) {
     const randomBall = getRandomBall();
     emits("ball-position", randomBall);
     const randomBallLocations = getRandomLocation();
@@ -102,8 +103,6 @@ const generateRandomBallPositions = async (iterations) => {
     setTimeout(() => {
       generateRandomBallPositions(iterations);
       remainingBalls.value = iterations;
-      console.log("remainingBalls", remainingBalls.value);
-
       emits("ball-quantity", remainingBalls.value);
     }, 3000);
   }
@@ -112,9 +111,8 @@ const generateRandomBallPositions = async (iterations) => {
 watch(
   () => props.started,
   (newValue, oldValue) => {
-    if (newValue === true) {
-      generateRandomBallPositions(7);
-    }
+    gameIsStarted.value = newValue;
+    generateRandomBallPositions(10);
   }
 );
 </script>

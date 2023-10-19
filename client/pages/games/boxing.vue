@@ -24,12 +24,13 @@
         :showAgainButton="showAgainButton"
         @go-back="closeInstruction"
         @start-game="startGame"
+        @try-again="playAgain"
       />
     </div>
     <div class="score-container">
       <p>
         Your Score: <span>{{ score }}</span
-        >/20
+        >/5
       </p>
     </div>
     <BoxingBall
@@ -92,7 +93,7 @@ definePageMeta({
 });
 
 const message = "You need to collect ";
-const span = "20";
+const span = "5";
 const remaining1 = "succesfull hits by moving right and left using";
 const image1 = "/images/games/boxing/arrow-left.png";
 const image2 = "/images/games/boxing/arrow-right.png";
@@ -148,79 +149,79 @@ const updateBallQuantity = (value) => {
   ballQuantity.value = value;
 };
 
+const timingFeedback = () => {
+  if (ballLocationY.value < 130) {
+    getScore.value = false;
+    failScore.value = true;
+    scoreMessage.value = "Too Early";
+    clearTimeout(messageTime);
+    messageTime = setTimeout(() => {
+      failScore.value = false;
+    }, 1000);
+  } else if (ballLocationY.value > 190) {
+    getScore.value = false;
+    failScore.value = true;
+    scoreMessage.value = "Too Late";
+    clearTimeout(messageTime);
+    messageTime = setTimeout(() => {
+      failScore.value = false;
+    }, 1000);
+  } else if (ballLocationY.value >= 130 && ballLocationY.value <= 190) {
+    getScore.value = true;
+    failScore.value = false;
+    scoreMessage.value = "Score";
+    clearTimeout(messageTime);
+    messageTime = setTimeout(() => {
+      getScore.value = false;
+    }, 1000);
+    score.value += 1;
+  }
+};
+
+const addScore = (ball, key, avatarPosition) => {
+  const ballAndAvatarAtSamePosition = ballLocationX.value === currentPosition;
+  const BallAtPositionA = ballPosition.value === key;
+  const BallAtPositionB = ballPosition.value === ball;
+
+  if (ballAndAvatarAtSamePosition && BallAtPositionA) {
+    timingFeedback();
+  } else if (BallAtPositionB && avatarPosition) {
+    timingFeedback();
+  }
+};
+
+const avatarMoving = () => {
+  if (
+    avatar.value &&
+    avatar.value.offsetWidth &&
+    mainContainer.value &&
+    mainContainer.value.offsetWidth
+  ) {
+    if (
+      currentPosition + avatar.value.offsetWidth <=
+      mainContainer.value.offsetWidth
+    ) {
+      avatar.value.style.transform = `translateX(${currentPosition}px)`;
+    }
+  }
+};
+
+const punchAnimation = (punchHand) => {
+  playAnimation.value = false;
+  punchHand.value = true;
+  clearTimeout(punchingTime);
+  punchingTime = setTimeout(() => {
+    playAnimation.value = true;
+    punchHand.value = false;
+  }, 200);
+};
+
 const startGame = () => {
   started.value = true;
   startGamePopUp.value = false;
   showStartButton.value = false;
   paused.value = false;
   playAnimation.value = true;
-
-  const timingFeedback = () => {
-    if (ballLocationY.value <= 130) {
-      getScore.value = false;
-      failScore.value = true;
-      scoreMessage.value = "Too Early";
-      clearTimeout(messageTime);
-      messageTime = setTimeout(() => {
-        failScore.value = false;
-      }, 1000);
-    } else if (ballLocationY.value > 190) {
-      getScore.value = false;
-      failScore.value = true;
-      scoreMessage.value = "Too Late";
-      clearTimeout(messageTime);
-      messageTime = setTimeout(() => {
-        failScore.value = false;
-      }, 1000);
-    } else if (ballLocationY.value >= 130 && ballLocationY.value <= 190) {
-      getScore.value = true;
-      failScore.value = false;
-      scoreMessage.value = "Score";
-      clearTimeout(messageTime);
-      messageTime = setTimeout(() => {
-        getScore.value = false;
-      }, 1000);
-      score.value += 1;
-    }
-  };
-
-  const addScore = (ball, key, avatarPosition) => {
-    const ballAndAvatarAtSamePosition = ballLocationX.value === currentPosition;
-    const BallAtPositionA = ballPosition.value === key;
-    const BallAtPositionB = ballPosition.value === ball;
-
-    if (ballAndAvatarAtSamePosition && BallAtPositionA) {
-      timingFeedback();
-    } else if (BallAtPositionB && avatarPosition) {
-      timingFeedback();
-    }
-  };
-
-  const avatarMoving = () => {
-    if (
-      avatar.value &&
-      avatar.value.offsetWidth &&
-      mainContainer.value &&
-      mainContainer.value.offsetWidth
-    ) {
-      if (
-        currentPosition + avatar.value.offsetWidth <=
-        mainContainer.value.offsetWidth
-      ) {
-        avatar.value.style.transform = `translateX(${currentPosition}px)`;
-      }
-    }
-  };
-
-  const punchAnimation = (punchHand) => {
-    playAnimation.value = false;
-    punchHand.value = true;
-    clearTimeout(punchingTime);
-    punchingTime = setTimeout(() => {
-      playAnimation.value = true;
-      punchHand.value = false;
-    }, 200);
-  };
 
   const handleKeyDown = (event) => {
     if (event.key === "ArrowRight" && currentPosition < 270) {
@@ -244,12 +245,27 @@ const startGame = () => {
   document.addEventListener("keydown", handleKeyDown);
 };
 
+const playAgain = () => {
+  startGamePopUp.value = false;
+  showRetryButton.value = false;
+  score.value = 0;
+  startGame();
+};
+
 watch(ballQuantity, (newBallQuantity, oldBallQuantity) => {
-  if (newBallQuantity === 0 && score.value < 20) {
+  if (newBallQuantity >= 0 && score.value === 5 && started.value) {
     started.value = false;
     playAnimation.value = false;
+    startGamePopUp.value = true;
     paused.value = true;
-    // alert("Game is finished");
+    showAgainButton.value = true;
+  }
+  if (newBallQuantity === 0 && score.value < 5 && started.value) {
+    started.value = false;
+    playAnimation.value = false;
+    startGamePopUp.value = true;
+    paused.value = true;
+    showRetryButton.value = true;
   }
 });
 </script>
