@@ -40,7 +40,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 
 definePageMeta({
   layout: "custom",
@@ -86,7 +86,6 @@ const closeInstruction = () => {
 };
 
 const currentImage = computed(() => images[currentIndex.value]);
-const startButtonDisabled = computed(() => gameEnded.value || isJumping.value);
 
 const startGame = () => {
   startGamePopUp.value = false;
@@ -100,16 +99,6 @@ const playAgain = () => {
   gameEnded.value = false;
   score.value = 0;
   startGame();
-};
-
-const continueGame = () => {
-  startGamePopUp.value = true;
-  showRetryButton.value = false;
-  showNextButton.value = true;
-  showAgainButton.value = true;
-  canContinue.value = false;
-  currentIndex.value++;
-  changeImage();
 };
 
 const changeImage = () => {

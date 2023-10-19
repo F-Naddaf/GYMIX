@@ -25,6 +25,7 @@ const emits = defineEmits([
   "ball-position",
   "ball-locationX",
   "ball-locationY",
+  "ball-quantity",
 ]);
 
 const challengeContainer = ref(null);
@@ -32,8 +33,9 @@ const leftBall = ref(null);
 const rightBall = ref(null);
 const showLeftBall = ref(false);
 const showRightBall = ref(false);
+const gameIsStarted = ref(false);
+let remainingBalls = ref(7);
 let translateY = 0;
-let timeout;
 
 let myInterval;
 
@@ -56,13 +58,12 @@ const moveBall = () => {
   } else if (challengeContainer.value) {
     translateY += 10;
     emits("ball-locationY", translateY);
-    // console.log("trans :", translateY);
     challengeContainer.value.style.transform = `translate(-50%, ${translateY}px)`;
   }
 };
 
 const generateRandomBallPositions = async (iterations) => {
-  if (iterations > 0) {
+  if (iterations > 0 && gameIsStarted.value) {
     const randomBall = getRandomBall();
     emits("ball-position", randomBall);
     const randomBallLocations = getRandomLocation();
@@ -98,8 +99,11 @@ const generateRandomBallPositions = async (iterations) => {
         showLeftBall.value = false;
       }, 2000);
     }
+    iterations -= 1;
     setTimeout(() => {
-      generateRandomBallPositions(iterations - 1);
+      generateRandomBallPositions(iterations);
+      remainingBalls.value = iterations;
+      emits("ball-quantity", remainingBalls.value);
     }, 3000);
   }
 };
@@ -107,9 +111,8 @@ const generateRandomBallPositions = async (iterations) => {
 watch(
   () => props.started,
   (newValue, oldValue) => {
-    if (newValue === true) {
-      generateRandomBallPositions(30);
-    }
+    gameIsStarted.value = newValue;
+    generateRandomBallPositions(10);
   }
 );
 </script>
