@@ -2,32 +2,47 @@
   <header :data-shadow="isJoinButtonHovered">
     <nav>
       <Logo background="header" />
-      <div class="routes">
+      <div v-if="isMobile">
+        <button @click="showDropDown" class="menu-btn">
+          <i v-if="!isDropdownVisible" class="fa-solid fa-bars"></i>
+          <i v-else class="fa-solid fa-xmark"></i>
+        </button>
+        <div
+          :class="{
+            'drop-menu': !isDropdownVisible,
+            active: isDropdownVisible,
+          }"
+        >
+          <ul>
+            <li v-for="menuItem in menuItems" :key="menuItem.id">
+              <NuxtLink :to="menuItem.link" @click="scrollToTop">{{
+                menuItem.label
+              }}</NuxtLink>
+            </li>
+          </ul>
+          <div class="join-container">
+            <button
+              class="btn-join"
+              @mouseover="isJoinButtonHovered = true"
+              @mouseout="isJoinButtonHovered = false"
+            >
+              <NuxtLink to="/login">
+                <h3>Join class now</h3>
+              </NuxtLink>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div v-if="!isMobile" class="routes">
         <ul>
-          <li>
-            <NuxtLink to="/" @click="scrollToTop">Home</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/about" @click="scrollToTop">About</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/gallery" @click="scrollToTop">Gallery</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/programs" @click="scrollToTop">Programs</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/blog" @click="scrollToTop">Blog</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/classes" @click="scrollToTop">Classes</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/contact" @click="scrollToTop">Contact</NuxtLink>
+          <li v-for="menuItem in menuItems" :key="menuItem.id">
+            <NuxtLink :to="menuItem.link" @click="scrollToTop">{{
+              menuItem.label
+            }}</NuxtLink>
           </li>
         </ul>
       </div>
-      <div class="btns-container">
+      <div v-if="!isMobile" class="btns-container">
         <button class="btn-user">
           <NuxtLink to="/login">
             <i class="fa-regular fa-user"></i>
@@ -47,6 +62,16 @@
         </button>
       </div>
     </nav>
+    <div v-if="isMobile" class="mobile-btns-container">
+      <button class="btn-user">
+        <NuxtLink to="/login">
+          <i class="fa-regular fa-user"></i>
+        </NuxtLink>
+      </button>
+      <button class="btn-menu" @click="openSidebar">
+        <i class="fa-solid fa-chart-bar"></i>
+      </button>
+    </div>
     <SideBar
       :show="isSidebarVisible"
       @close-sidebar="isSidebarVisible = false"
@@ -64,12 +89,34 @@ const scrollToTop = () => {
   });
 };
 
+const menuItems = [
+  { id: 1, link: "/", label: "Home" },
+  { id: 2, link: "/about", label: "About" },
+  { id: 3, link: "/gallery", label: "Gallery" },
+  { id: 4, link: "/programs", label: "Programs" },
+  { id: 5, link: "/blog", label: "Blog" },
+  { id: 6, link: "/classes", label: "Classes" },
+  { id: 7, link: "/contact", label: "Contact" },
+];
+
 const isSidebarVisible = ref(false);
 const isJoinButtonHovered = ref(false);
+const isDropdownVisible = ref(false);
+const isMobile = ref(false);
 
 const openSidebar = () => {
   isSidebarVisible.value = !isSidebarVisible.value;
 };
+
+const showDropDown = () => {
+  isDropdownVisible.value = !isDropdownVisible.value;
+};
+
+if (typeof window !== "undefined") {
+  if (window.innerWidth <= 1024) {
+    isMobile.value = true;
+  }
+}
 </script>
 
 <style scoped>
@@ -83,6 +130,7 @@ header {
   top: 0;
   z-index: 100;
   box-shadow: 0px 0px 10px var(--primary-color);
+  position: relative;
 }
 nav {
   display: flex;
@@ -90,10 +138,86 @@ nav {
   justify-content: space-between;
   align-items: center;
 }
+.menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.fa-bars,
+.fa-xmark {
+  color: white;
+  margin-right: 20px;
+  font-size: 22px;
+}
+.drop-menu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 10vh;
+  right: 0;
+  width: 30%;
+  padding: 0;
+  height: 0;
+  background: #4f5155;
+  overflow: hidden;
+  transition: height 1s ease-in-out;
+  z-index: 1;
+}
+.active {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 10vh;
+  right: 0;
+  width: 30%;
+  padding: 0;
+  height: 450px;
+  background: #4f5155;
+  overflow: hidden;
+  transition: height 1s ease-in-out;
+}
+.active ul,
+.drop-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+.active ul li {
+  width: 100%;
+}
+.active ul li a,
+.drop-menu ul li a {
+  display: flex;
+  justify-content: center;
+  color: var(--text-color);
+  font-size: 14px;
+  text-decoration: none;
+  padding: 5px 0;
+  transition: color 0.2s;
+  width: 100%;
+}
+.active .join-container,
+.drop-menu .join-container {
+  margin-top: 40px;
+}
+.active ul li:hover {
+  color: white;
+
+  background: var(--primary-color);
+}
+.active ul li:hover a {
+  font-weight: 700;
+  font-size: 16px;
+}
+
 .routes {
   display: flex;
 }
-
 ul {
   list-style: none;
   display: flex;
@@ -117,20 +241,29 @@ li a:hover {
   color: var(--primary-color);
   font-size: 14px;
 }
-.btns-container .btn-user,
+.mobile-btns-container {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(-100px, -50%);
+}
+.btn-user,
 .btn-menu {
   background: none;
   border: none;
   margin-right: 20px;
 }
-.btns-container .btn-join {
+.join-container {
+  margin-top: 0;
+}
+.btn-join {
   background: var(--primary-color);
   border-radius: 8px;
   border: none;
   padding: 15px 20px;
   margin-left: 20px;
 }
-.btns-container .btn-join h3 {
+.btn-join h3 {
   font-weight: 600;
   font-size: 16px;
   color: white;
@@ -141,13 +274,14 @@ i {
   color: var(--text-color);
   font-size: 20px;
 }
-.btns-container button {
+.mobile-btns-container button,
+.btn-container button {
   cursor: pointer;
 }
-.btns-container .btn-user:hover i {
+.btn-user:hover i {
   color: var(--primary-hover);
 }
-.btns-container .btn-menu:hover i {
+.btn-menu:hover i {
   color: var(--primary-hover);
 }
 .btn-join:hover {
