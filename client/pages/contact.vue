@@ -74,51 +74,29 @@
         </form>
       </section>
       <section class="google-map">
-        <div id="map"></div>
+        <GoogleMap
+          api-key="AIzaSyDNNpH1sD9o7WUF8alRkoLIk2nyEY7mXQ8"
+          style="width: 100%; height: 500px"
+          :center="center"
+          :zoom="15"
+        >
+          <Marker :options="{ position: center }" />
+        </GoogleMap>
       </section>
     </main>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
+import { GoogleMap, Marker } from "vue3-google-map";
 
 const title = ref("Contact Us");
 
-const googleMapsApiKey = ref("AIzaSyDNNpH1sD9o7WUF8alRkoLIk2nyEY7mXQ8");
 let LATITUDE = 52.087177363772376;
 let LONGITUDE = 4.869294507439261;
 
-const loadGoogleMapsScript = () => {
-  return new Promise((resolve, reject) => {
-    const getGoogleById = document.getElementById("googleMapsScript");
-    if (getGoogleById) {
-      resolve();
-      return;
-    }
-    const script = document.createElement("script");
-    script.id = "googleMapsScript";
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${googleMapsApiKey.value}&callback=initMap`;
-    script.async = true;
-    script.defer = true;
-    script.onload = resolve;
-    script.onerror = reject;
-    document.head.appendChild(script);
-  });
-};
-
-onMounted(async () => {
-  await loadGoogleMapsScript();
-  const map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: LATITUDE, lng: LONGITUDE },
-    zoom: 10,
-  });
-  new google.maps.Marker({
-    position: { lat: LATITUDE, lng: LONGITUDE },
-    map: map,
-    title: "Marker Title",
-  });
-});
+const center = { lat: LATITUDE, lng: LONGITUDE };
 </script>
 
 <style scoped>
