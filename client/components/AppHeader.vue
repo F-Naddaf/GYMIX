@@ -143,11 +143,15 @@ nav {
   border: none;
   cursor: pointer;
 }
-.fa-bars,
-.fa-xmark {
+.fa-bars {
   color: white;
   margin-right: 20px;
   font-size: 22px;
+}
+.fa-xmark {
+  color: var(--primary-color);
+  margin-right: 20px;
+  font-size: 24px;
 }
 .drop-menu {
   position: absolute;
@@ -162,7 +166,6 @@ nav {
   background: #4f5155;
   overflow: hidden;
   transition: height 1s ease-in-out;
-  z-index: 1;
 }
 .active {
   position: absolute;
