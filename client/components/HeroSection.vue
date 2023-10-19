@@ -153,7 +153,73 @@ h2 {
   color: var(--primary-color);
 }
 
-@media screen and (min-width: 600px) and (max-width: 768px) {
-  
+@media screen and (min-width: 940px) and (max-width: 1200px) {
+  .hero-container {
+    margin-top: -24vh;
+  }
+  .hero-wrapper {
+    width: 50%;
+  }
+  .slogan-tag {
+    width: 70%;
+  }
+  .hero-share {
+    margin-left: 30px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 940px) {
+  .hero-container {
+    margin-top: -26vh;
+  }
+  .hero-wrapper {
+    width: 50%;
+  }
+  .slogan-tag {
+    width: 75%;
+  }
+  .hero-share {
+    margin-left: 30px;
+    margin-top: 60px;
+  }
+}
+@media screen and (min-width: 500px) and (max-width: 768px) {
+  .hero-container {
+    margin-top: -26vh;
+  }
+  .hero-wrapper {
+    width: 80%;
+  }
+  h2 {
+    color: white;
+  }
+  .slogan-tag {
+    width: 80%;
+  }
+}
+@media screen and (min-width: 390px) and (max-width: 500px) {
+  .hero-container {
+    margin-top: -26vh;
+  }
+  .hero-wrapper {
+    left: 50px;
+  }
+  .hero-wrapper {
+    width: 80%;
+  }
+  .slogan-container {
+    margin-right: 40px;
+  }
+  h2 {
+    color: white;
+  }
+  .slogan-tag {
+    width: 80%;
+  }
+  h3 {
+    font-size: 18px;
+  }
+  .hero-share {
+    margin-top: 70px;
+  }
 }
 </style>

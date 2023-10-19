@@ -293,4 +293,12 @@ i {
 header[data-shadow="true"] {
   box-shadow: 0px 0px 10px var(--secondary-color);
 }
+@media screen and (min-width: 390px) and (max-width: 500px) {
+  .mobile-btns-container {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(-80px, -50%);
+  }
+}
 </style>
