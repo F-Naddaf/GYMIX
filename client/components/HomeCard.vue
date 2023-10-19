@@ -132,6 +132,7 @@ const articles = ref([
   width: 80%;
   margin: auto;
   padding: 50px 0 50px 0;
+  gap: 40px;
 }
 article {
   transform: perspective(100px) translateZ(50px);
@@ -193,5 +194,36 @@ p {
 article:hover h3,
 article:hover p {
   color: white;
+}
+
+@media screen and (min-width: 940px) and (max-width: 1200px) {
+  .normalCard {
+    width: 240px;
+  }
+  .card-wrapper {
+    gap: 20px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 940px) {
+  .card-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    width: 80%;
+    margin: auto;
+    padding: 50px 0 50px 0;
+    gap: 40px;
+  }
+}
+@media screen and (min-width: 390px) and (max-width: 768px) {
+  .card-wrapper {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+    width: 80%;
+    margin: auto;
+    padding: 50px 0 50px 0;
+    gap: 40px;
+  }
 }
 </style>
