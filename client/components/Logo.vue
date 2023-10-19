@@ -147,4 +147,21 @@ img {
     left: 0;
   }
 }
+@media screen and (min-width: 390px) and (max-width: 500px) {
+  .logo-container {
+    width: 15%;
+  }
+  img {
+    height: 50px;
+    z-index: 10;
+  }
+  .heart-container {
+    top: 20px;
+    left: 16px;
+  }
+  .heart-container svg {
+    width: 20px;
+    height: 12px;
+  }
+}
 </style>
