@@ -169,6 +169,7 @@ const prevCard = () => {
   );
   box-shadow: rgba(0, 0, 0, 0.5) 0px -5px 16px, rgba(0, 0, 0, 0.5) 0px 5px 16px;
   margin: 0 auto 80px auto;
+  overflow: hidden;
 }
 .feedback-header {
   display: inline-block;
