@@ -282,4 +282,67 @@ const trainers = [
 .contact .icon:hover {
   background: var(--primary-color);
 }
+
+@media screen and (min-width: 1024px) and (max-width: 1250px) {
+  .title-wrapper {
+    width: 22%;
+  }
+  .info {
+    width: 60%;
+  }
+  .card {
+    width: 250px;
+    height: 420px;
+    padding: 60px 20px;
+  }
+  .tag {
+    bottom: 0;
+    width: 120%;
+  }
+}
+@media screen and (min-width: 940px) and (max-width: 1023px) {
+  .title-wrapper {
+    width: 26%;
+  }
+  .card-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px 0;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 940px) {
+  .title-wrapper {
+    width: 30%;
+  }
+  .card-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 0;
+  }
+  .card {
+    width: 260px;
+    height: 420px;
+    padding: 60px 20px;
+  }
+  .tag {
+    bottom: 0;
+    width: 120%;
+  }
+}
+@media screen and (min-width: 390px) and (max-width: 767px) {
+  .title-wrapper {
+    width: 45%;
+  }
+  .card-container {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 40px 0;
+  }
+  .card {
+    width: 320px;
+    height: 420px;
+    padding: 60px 20px;
+  }
+  .tag {
+    bottom: 0;
+    width: 120%;
+  }
+}
 </style>
