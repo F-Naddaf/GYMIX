@@ -225,4 +225,40 @@ let calcBmi = () => {
   color: var(--primary-color);
   font-weight: 600;
 }
+
+@media screen and (min-width: 1024px) and (max-width: 1150px) {
+  .title {
+    font-size: 36px;
+  }
+}
+@media screen and (min-width: 940px) and (max-width: 1023px) {
+  .bmi-wrraper {
+    width: 60%;
+  }
+  .title {
+    font-size: 36px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 940px) {
+  .bmi-wrraper {
+    width: 80%;
+  }
+  .title {
+    font-size: 36px;
+  }
+}
+@media screen and (min-width: 390px) and (max-width: 767px) {
+  .bmi-wrraper {
+    width: 100%;
+  }
+  .info {
+    opacity: 1;
+  }
+  .input-container input {
+    color: white;
+  }
+  .input-container input::placeholder {
+    color: var(--text-color);
+  }
+}
 </style>
