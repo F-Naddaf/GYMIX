@@ -228,4 +228,50 @@ const features = [
 .image-wrapper:hover .tag .icon {
   filter: none;
 }
+
+@media screen and (min-width: 940px) and (max-width: 1200px) {
+  .title-wrapper {
+    width: 30%;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 940px) {
+  .title-wrapper {
+    width: 35%;
+  }
+  .images-container > div {
+    grid-column-end: span 2;
+  }
+}
+@media screen and (min-width: 500px) and (max-width: 767px) {
+  .title-wrapper {
+    width: 50%;
+  }
+  .featured-container h4 {
+    font-size: 18px;
+    text-align: center;
+  }
+  .images-container > div {
+    grid-column-end: span 4;
+  }
+  .images-container > div:first-child,
+  .images-container > div:last-child {
+    grid-column-end: span 4;
+  }
+}
+@media screen and (min-width: 390px) and (max-width: 500px) {
+  .title-wrapper {
+    width: 70%;
+  }
+  .featured-container h4 {
+    font-size: 18px;
+    text-align: center;
+  }
+  .images-container > div {
+    grid-column-end: span 4;
+  }
+  .images-container > div:first-child,
+  .images-container > div:last-child {
+    grid-column-end: span 4;
+  }
+}
 </style>
