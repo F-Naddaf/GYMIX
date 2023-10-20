@@ -149,4 +149,63 @@ const images = [
   transform: translateY(-50px) scale(1.2);
   filter: none;
 }
+
+@media screen and (min-width: 940px) and (max-width: 1024px) {
+  .slider span {
+    width: 80%;
+    height: 80%;
+    transform: rotateY(calc(var(--i) * 315deg)) translateZ(278px);
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 940px) {
+  .gallery-header {
+    width: 75%;
+  }
+  .slider span {
+    width: 70%;
+    height: 70%;
+    transform: rotateY(calc(var(--i) * 314deg)) translateZ(240px);
+  }
+}
+
+@media screen and (min-width: 500px) and (max-width: 767px) {
+  .gallery-header {
+    width: 80%;
+  }
+  .gallery-header .title {
+    font-size: 34px;
+    text-align: center;
+  }
+  .slider {
+    margin: 40px auto 80px auto;
+    width: 150px;
+    height: 150px;
+  }
+  .slider span {
+    width: 100%;
+    height: 100%;
+    transform: rotateY(calc(var(--i) * 315deg)) translateZ(215px);
+  }
+}
+
+@media screen and (min-width: 390px) and (max-width: 499px) {
+  .gallery-header {
+    width: 90%;
+  }
+  .gallery-header .title {
+    font-size: 28px;
+    text-align: center;
+  }
+  .slider {
+    margin: 40px auto 80px auto;
+    width: 100px;
+    height: 100px;
+  }
+  .slider span {
+    width: 100%;
+    height: 100%;
+    transform: rotateY(calc(var(--i) * 315deg)) translateZ(158px);
+  }
+}
 </style>
