@@ -90,7 +90,7 @@ img {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: rgb(27, 27, 27);
+  background-color: black;
   top: 0;
   right: 0;
   animation: heartRateIn 2.5s linear infinite;
@@ -114,12 +114,12 @@ img {
   position: absolute;
   width: 110%;
   height: 100%;
-  background: rgba(27, 27, 27, 1);
+  background: rgba(0, 0, 0, 1);
   background: linear-gradient(
     to right,
-    rgba(27, 27, 27, 1) 0%,
-    rgba(27, 27, 27, 1) 80%,
-    rgba(27, 27, 27, 0) 100%
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 80%,
+    rgba(0, 0, 0, 0) 100%
   );
   top: 0;
   right: -110%;
