@@ -229,42 +229,7 @@ aside {
     width: 40%;
   }
 }
-@media screen and (min-width: 500px) and (max-width: 768px) {
-  .home-about-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 60px 0;
-  }
-  aside {
-    width: 90%;
-  }
-  .about-title {
-    margin-top: 40px;
-    align-items: center;
-  }
-  .title-wrapper {
-    width: 40%;
-  }
-  .about-info-container {
-    padding: 0 10px;
-    align-items: center;
-  }
-  .about-info-container h4 {
-    font-size: 22px;
-    text-align: center;
-  }
-  .about-info-container p {
-    font-size: 14px;
-    text-align: center;
-  }
-  .icon-container article p {
-    font-size: 12px;
-    letter-spacing: 1px;
-  }
-}
-
-@media screen and (min-width: 390px) and (max-width: 500px) {
+@media screen and (min-width: 390px) and (max-width: 768px) {
   .home-about-container {
     display: flex;
     flex-direction: column;
