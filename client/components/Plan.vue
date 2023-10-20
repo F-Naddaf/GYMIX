@@ -148,7 +148,7 @@ onMounted(() => {
   padding: 30px 40px;
   border-radius: 20px;
   align-items: center;
-  height: 450px;
+  height: auto;
 }
 .price-wrapper article h1,
 h3,
@@ -208,5 +208,73 @@ li {
   border: 1px solid white;
   color: var(--secondary-color);
   font-weight: 900;
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1200px) {
+  .price-wrapper {
+    width: 90%;
+  }
+}
+@media screen and (min-width: 940px) and (max-width: 1023px) {
+  .price-wrapper {
+    width: 90%;
+  }
+  .price-wrapper h1 {
+    font-size: 28px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 940px) {
+  .price-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 90%;
+    gap: 30px 0;
+  }
+  .plan-header p {
+    text-align: center;
+    width: 80%;
+    line-height: 24px;
+  }
+  .card:nth-child(2) {
+    grid-row: 2;
+  }
+  .card:nth-child(3) {
+    grid-row: 1;
+  }
+  .card:nth-child(1) {
+    grid-row: 1;
+  }
+  .card {
+    width: 300px;
+  }
+}
+@media screen and (min-width: 390px) and (max-width: 767px) {
+  .price-wrapper {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    width: 90%;
+    gap: 30px 0;
+  }
+  .plan-header .title {
+    text-align: center;
+    font-size: 32px;
+  }
+  .plan-header p {
+    text-align: center;
+    width: 80%;
+    line-height: 24px;
+  }
+  .card:nth-child(2) {
+    grid-row: 3;
+  }
+  .card:nth-child(3) {
+    grid-row: 2;
+  }
+  .card:nth-child(1) {
+    grid-row: 1;
+  }
+  .card {
+    width: 300px;
+  }
 }
 </style>
