@@ -242,7 +242,7 @@ const prevCard = () => {
   color: var(--text-color);
   font-size: 38px;
   font-weight: 700;
-  width: 70%;
+  width: 75%;
   margin-bottom: 40px;
 }
 .feedback-info p {
@@ -445,5 +445,145 @@ const prevCard = () => {
   background: var(--text-color);
   border-radius: 5px;
   margin: 0 5px;
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1200px) {
+  .feedback-info h3 {
+    font-size: 30px;
+    width: 75%;
+  }
+}
+
+@media screen and (min-width: 940px) and (max-width: 1023px) {
+  .feedback-info h3 {
+    font-size: 30px;
+    width: 75%;
+  }
+  .card-container {
+    width: 420px;
+  }
+  .slider {
+    width: 420px;
+  }
+  .slider .slider-view {
+    width: 420px;
+    margin-right: 40px;
+  }
+  .next-button {
+    margin-right: 0;
+  }
+  .prev-button {
+    margin-left: 0;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 939px) {
+  .feedback-content {
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    width: 90%;
+  }
+  .feedback-info {
+    width: 90%;
+    margin-bottom: 60px;
+    align-items: center;
+  }
+  .feedback-info h3 {
+    font-size: 28px;
+    width: 90%;
+    text-align: center;
+  }
+  .rate-images {
+    justify-content: center;
+  }
+  .rate-icon {
+    justify-content: center;
+  }
+  .card-container {
+    width: 460px;
+  }
+}
+@media screen and (min-width: 520px) and (max-width: 767px) {
+  .feedback-content {
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    width: 90%;
+  }
+  .feedback-info {
+    width: 90%;
+    margin-bottom: 60px;
+    align-items: center;
+  }
+  .feedback-info h3 {
+    font-size: 28px;
+    width: 90%;
+    text-align: center;
+  }
+  .rate-images {
+    justify-content: center;
+  }
+  .rate-icon {
+    justify-content: center;
+  }
+  .card-container {
+    width: 460px;
+  }
+}
+@media screen and (min-width: 390px) and (max-width: 519px) {
+  .feedback-content {
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    width: 90%;
+  }
+  .feedback-info {
+    width: 90%;
+    margin-bottom: 60px;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .feedback-info h3 {
+    font-size: 28px;
+    width: 90%;
+    text-align: center;
+  }
+  .feedback-info p {
+    width: 100%;
+    text-align: center;
+  }
+  .rate-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .rate-images {
+    width: 100%;
+    justify-content: center;
+  }
+  .rate-icon {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .feedback-info .rate-icon p {
+    width: fit-content;
+  }
+  .card-container {
+    width: 340px;
+  }
+  .slider {
+    width: 340px;
+  }
+  .slider .slider-view {
+    width: 340px;
+    margin-right: 120px;
+  }
+  .next-button {
+    margin-right: 45px;
+  }
+  .prev-button {
+    margin-left: 45px;
+  }
 }
 </style>
