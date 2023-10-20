@@ -112,7 +112,7 @@ watch(
   () => props.started,
   (newValue, oldValue) => {
     gameIsStarted.value = newValue;
-    generateRandomBallPositions(10);
+    generateRandomBallPositions(14);
   }
 );
 </script>

@@ -30,7 +30,7 @@
     <div class="score-container">
       <p>
         Your Score: <span>{{ score }}</span
-        >/5
+        >/10
       </p>
     </div>
     <BoxingBall
@@ -93,7 +93,7 @@ definePageMeta({
 });
 
 const message = "You need to collect ";
-const span = "5";
+const span = "10";
 const remaining1 = "succesfull hits by moving right and left using";
 const image1 = "/images/games/boxing/arrow-left.png";
 const image2 = "/images/games/boxing/arrow-right.png";
@@ -242,7 +242,7 @@ const startGame = () => {
       avatarMoving();
     }
   };
-  document.addEventListener("keydown", handleKeyDown);
+  document.onkeydown = handleKeyDown;
 };
 
 const playAgain = () => {
@@ -253,14 +253,14 @@ const playAgain = () => {
 };
 
 watch(ballQuantity, (newBallQuantity, oldBallQuantity) => {
-  if (newBallQuantity >= 0 && score.value === 5 && started.value) {
+  if (newBallQuantity >= 0 && score.value === 10 && started.value) {
     started.value = false;
     playAnimation.value = false;
     startGamePopUp.value = true;
     paused.value = true;
     showAgainButton.value = true;
   }
-  if (newBallQuantity === 0 && score.value < 5 && started.value) {
+  if (newBallQuantity === 0 && score.value < 10 && started.value) {
     started.value = false;
     playAnimation.value = false;
     startGamePopUp.value = true;
