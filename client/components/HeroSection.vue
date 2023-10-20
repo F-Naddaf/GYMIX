@@ -152,8 +152,7 @@ h2 {
 .hero-social i:hover {
   color: var(--primary-color);
 }
-
-@media screen and (min-width: 940px) and (max-width: 1200px) {
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
   .hero-container {
     margin-top: -24vh;
   }
@@ -167,9 +166,24 @@ h2 {
     margin-left: 30px;
   }
 }
+
+@media screen and (min-width: 940px) and (max-width: 1023px) {
+  .hero-container {
+    margin-top: 0;
+  }
+  .hero-wrapper {
+    width: 50%;
+  }
+  .slogan-tag {
+    width: 70%;
+  }
+  .hero-share {
+    margin-left: 30px;
+  }
+}
 @media screen and (min-width: 768px) and (max-width: 940px) {
   .hero-container {
-    margin-top: -26vh;
+    margin-top: 0;
   }
   .hero-wrapper {
     width: 50%;
@@ -184,7 +198,7 @@ h2 {
 }
 @media screen and (min-width: 500px) and (max-width: 768px) {
   .hero-container {
-    margin-top: -26vh;
+    margin-top: 0;
   }
   .hero-wrapper {
     width: 80%;
@@ -198,7 +212,7 @@ h2 {
 }
 @media screen and (min-width: 390px) and (max-width: 500px) {
   .hero-container {
-    margin-top: -26vh;
+    margin-top: 0;
   }
   .hero-wrapper {
     left: 50px;
