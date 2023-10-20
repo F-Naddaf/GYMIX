@@ -79,4 +79,10 @@ h3 {
 p {
   margin: 20px 0;
 }
+
+@media screen and (min-width: 390px) and (max-width: 1023px) {
+  .avatar-container {
+    display: none;
+  }
+}
 </style>

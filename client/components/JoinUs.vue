@@ -310,4 +310,87 @@ i {
   font-weight: 500;
   margin: 0;
 }
+
+@media screen and (min-width: 940px) and (max-width: 1200px) {
+  .btn-container {
+    bottom: -70px;
+  }
+  .join-container .join-aside h3 {
+    font-size: 30px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 940px) {
+  .join-container {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 0 120px 0;
+  }
+  .join-aside {
+    width: 80%;
+    margin: 20px 0;
+  }
+  .btn-container {
+    bottom: -70px;
+  }
+}
+@media screen and (min-width: 500px) and (max-width: 768px) {
+  .join-container {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0 120px 0;
+  }
+  .join-aside {
+    width: 80%;
+    margin: 20px 0;
+    align-items: center;
+  }
+  .btn-container {
+    bottom: -90px;
+    right: 10%;
+  }
+}
+@media screen and (min-width: 390px) and (max-width: 500px) {
+  .join-container {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0 120px 0;
+  }
+  .join-aside {
+    width: 80%;
+    margin: 20px 0;
+    align-items: center;
+  }
+  .heart-container {
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 60px;
+  }
+  .heart-container .heart-reading .heart-rate,
+  .fat-container .fat-reading .fat-rate {
+    font-size: 18px;
+  }
+  .heart-container .heart-reading p,
+  .fat-container .fat-reading p {
+    font-size: 14px;
+  }
+  .join-container .join-aside h3 {
+    font-size: 30px;
+    text-align: center;
+  }
+  .fat-container {
+    bottom: 10%;
+    left: 0;
+    width: 150px;
+    height: 60px;
+  }
+  .btn-container {
+    bottom: -90px;
+    right: 25%;
+    transform: scale(0.8);
+  }
+}
 </style>
