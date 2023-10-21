@@ -31,15 +31,16 @@ const props = defineProps({
   width: 300px;
   position: absolute;
   top: 50%;
-  left: -10%;
-  animation: swipe-e897584b 0.8s ease-in-out forwards;
+  left: 0;
+  transform: translate(-300px, 50%);
+  animation: swipe 1.2s ease-in-out forwards;
 }
 @keyframes swipe {
   0% {
-    left: -10%;
+    left: -300px;
   }
   100% {
-    left: 10%;
+    left: 300px;
   }
 }
 .page-title {
@@ -57,7 +58,7 @@ const props = defineProps({
   height: 3px;
   background: var(--primary-color);
   transform: translateX(-140px);
-  animation: showLine 1s ease-in-out forwards 0.8s;
+  animation: showLine 0.8s ease-in-out forwards 1s;
 }
 @keyframes showLine {
   0% {
@@ -70,6 +71,28 @@ const props = defineProps({
   100% {
     width: 60px;
     transform: translateX(0px);
+  }
+}
+
+@media screen and (min-width: 500px) and (max-width: 768px) {
+  @keyframes swipe {
+    0% {
+      left: -250px;
+    }
+    100% {
+      left: 250px;
+    }
+  }
+}
+
+@media screen and (min-width: 390px) and (max-width: 519px) {
+  @keyframes swipe {
+    0% {
+      left: -200px;
+    }
+    100% {
+      left: 200px;
+    }
   }
 }
 </style>
