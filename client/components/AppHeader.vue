@@ -83,6 +83,7 @@
 import { ref, onMounted } from "vue";
 
 const scrollToTop = () => {
+  showDropDown();
   window.scrollTo({
     top: 0,
     behavior: "smooth",
@@ -179,7 +180,7 @@ nav {
   align-items: center;
   top: 10vh;
   right: 0;
-  width: 30%;
+  width: 300px;
   padding: 0;
   height: 450px;
   background: #4f5155;
@@ -298,6 +299,7 @@ i {
 header[data-shadow="true"] {
   box-shadow: 0px 0px 10px var(--secondary-color);
 }
+
 @media screen and (min-width: 390px) and (max-width: 500px) {
   .mobile-btns-container {
     position: absolute;
