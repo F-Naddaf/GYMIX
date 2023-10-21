@@ -33,7 +33,7 @@
           </div>
         </div>
       </div>
-      <div v-if="!isMobile" class="routes">
+      <div v-if="!isMobile" class="nav-container">
         <ul>
           <li v-for="menuItem in menuItems" :key="menuItem.id">
             <NuxtLink :to="menuItem.link" @click="scrollToTop">{{
@@ -80,7 +80,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
 const scrollToTop = () => {
   window.scrollTo({
@@ -112,11 +112,13 @@ const showDropDown = () => {
   isDropdownVisible.value = !isDropdownVisible.value;
 };
 
-if (typeof window !== "undefined") {
-  if (window.innerWidth <= 1024) {
-    isMobile.value = true;
+onMounted(() => {
+  if (typeof window !== "undefined") {
+    if (window.innerWidth <= 1024) {
+      isMobile.value = true;
+    }
   }
-}
+});
 </script>
 
 <style scoped>
@@ -218,7 +220,7 @@ nav {
   font-size: 16px;
 }
 
-.routes {
+.nav-container {
   display: flex;
 }
 ul {
@@ -240,7 +242,7 @@ li a {
 li a:hover {
   color: var(--primary-hover);
 }
-.routes .router-link-exact-active {
+.nav-container .router-link-exact-active {
   color: var(--primary-color);
   font-size: 14px;
 }

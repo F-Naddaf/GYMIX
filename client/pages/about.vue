@@ -112,4 +112,38 @@ const aboutUsVisions = [
   height: auto;
   object-fit: cover;
 }
+
+@media screen and (min-width: 768px) and (max-width: 960px) {
+  .about-info img {
+    width: 15%;
+  }
+  .about-info h3 {
+    font-size: 22px;
+  }
+  .about-info p {
+    font-size: 14px;
+    line-height: 18px;
+    padding: 0 20px;
+  }
+}
+@media screen and (min-width: 390px) and (max-width: 767px) {
+  .about {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .about-details {
+    margin-bottom: 30px;
+  }
+  .about-info h3 {
+    margin: 10px 0;
+  }
+  .about-details:nth-child(1) {
+    order: 1;
+  }
+  .about-details:nth-child(3) {
+    order: 2;
+  }
+  .about-details .image-container {
+    width: 80%;
+  }
+}
 </style>

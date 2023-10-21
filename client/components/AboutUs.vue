@@ -230,7 +230,8 @@ aside {
   }
 }
 @media screen and (min-width: 390px) and (max-width: 768px) {
-  .home-about-container {
+  .home-about-container,
+  .about-container {
     display: flex;
     flex-direction: column;
     align-items: center;
