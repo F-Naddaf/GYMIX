@@ -126,4 +126,38 @@ button i {
   font-weight: 700;
   color: var(--primary-color);
 }
+
+@media screen and (min-width: 1024px) and (max-width: 1400px) {
+  .image-wrapper {
+    width: 100%;
+    height: 250px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .image-wrapper {
+    width: 100%;
+    height: 200px;
+  }
+}
+
+@media screen and (min-width: 500px) and (max-width: 767px) {
+  .images-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .image-wrapper {
+    width: 100%;
+    height: 200px;
+  }
+}
+
+@media screen and (min-width: 390px) and (max-width: 499px) {
+  .images-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .image-wrapper {
+    width: 100%;
+    height: 250px;
+  }
+}
 </style>
