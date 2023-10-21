@@ -112,11 +112,14 @@ const showDropDown = () => {
   isDropdownVisible.value = !isDropdownVisible.value;
 };
 
+const checkIsMobile = () => {
+  isMobile.value = window.innerWidth <= 1024;
+};
+
 onMounted(() => {
   if (typeof window !== "undefined") {
-    if (window.innerWidth <= 1024) {
-      isMobile.value = true;
-    }
+    checkIsMobile();
+    window.addEventListener("resize", checkIsMobile);
   }
 });
 </script>
