@@ -203,4 +203,10 @@ const closeSidebar = () => {
   font-size: 18px;
   color: white;
 }
+
+@media screen and (min-width: 390px) and (max-width: 450px) {
+  .side-bar-container[data-v-51213749] {
+    width: 100%;
+  }
+}
 </style>
