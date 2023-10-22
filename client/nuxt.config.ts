@@ -8,7 +8,6 @@ export default {
       },
     },
   },
-  css: ["@fortawesome/fontawesome-free/css/all.css", "/assets/css/style.css"],
   build: {
     rollupOptions: {
       external: ["@fortawesome/fontawesome-free/css/all.css"],
