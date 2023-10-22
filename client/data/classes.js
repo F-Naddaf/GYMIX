@@ -25,7 +25,7 @@ export default [
   },
   {
     class: "Cycling",
-    trainer: "Lance Spinworthy",
+    trainer: "Lance leeuw",
     timing: "Sun 06:00 pm",
     image: "/images/classes/cycling.png",
   },
@@ -65,5 +65,4 @@ export default [
     timing: "Thu 02:00 pm",
     image: "/images/classes/power.png",
   },
-  
 ];

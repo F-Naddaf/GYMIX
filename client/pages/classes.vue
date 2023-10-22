@@ -7,10 +7,17 @@
           <img :src="ourClass.image" :alt="ourClass.class" />
           <div class="class-details">
             <h3>{{ ourClass.class }}<span></span></h3>
-            <p>
-              <i class="fa-regular fa-user"></i> {{ ourClass.trainer }}
-              <i class="fa-regular fa-clock"></i> {{ ourClass.timing }}
-            </p>
+            <div class="class-info">
+              <p>
+                <i class="fa-regular fa-user"></i>
+                {{ ourClass.trainer }}
+              </p>
+              <p>
+                <i class="fa-regular fa-clock"></i>
+                {{ ourClass.timing }}
+              </p>
+            </div>
+
             <NuxtLink to="/contact">Join Now</NuxtLink>
           </div>
         </article>
@@ -112,7 +119,7 @@ img {
   left: 0;
   right: 0;
   width: 100%;
-  height: 40%;
+  height: fit-content;
   padding: 20px;
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
@@ -125,15 +132,25 @@ img {
   color: var(--text-color);
   font-size: 28px;
 }
+.class-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .class-details p {
   color: var(--text-color);
   display: flex;
   align-items: stretch;
   margin: 20px 0;
+  font-size: 14px;
 }
-.class-details p i {
+.class-info i:nth-child(1) {
   color: var(--text-color);
-  padding: 0 10px;
+  padding: 0 10px 0 0;
+}
+.class-info i:nth-child(3) {
+  color: var(--text-color);
+  padding: 0 10px 0 20px;
 }
 .class-details a {
   display: flex;
@@ -174,5 +191,47 @@ img {
 .show-btn button i {
   font-size: 16px;
   color: white;
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1440px) {
+  article {
+    width: 300px;
+    height: 400px;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1199px) {
+  .classes-container {
+    width: auto;
+    padding: 0 60px;
+  }
+  article {
+    width: 275px;
+    height: 350px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .classes-container {
+    grid-template-columns: repeat(2, 1fr);
+    width: auto;
+    padding: 0 60px;
+  }
+  article {
+    width: 275px;
+    height: 350px;
+  }
+}
+
+@media screen and (min-width: 390px) and (max-width: 767px) {
+  .classes-container {
+    grid-template-columns: repeat(1, 1fr);
+    width: auto;
+    padding: 0 60px;
+  }
+  article {
+    width: 275px;
+    height: 350px;
+  }
 }
 </style>
