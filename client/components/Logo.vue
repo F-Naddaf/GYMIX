@@ -147,6 +147,21 @@ img {
     left: 0;
   }
 }
+
+@media screen and (min-width: 390px) and (max-width: 1150px) {
+  img {
+    height: 60px;
+    z-index: 10;
+  }
+  .heart-container {
+    top: 25px;
+    left: 18px;
+  }
+  .heart-rate {
+    width: 25px;
+  }
+}
+
 @media screen and (min-width: 390px) and (max-width: 500px) {
   .logo-container {
     width: 15%;
