@@ -5,7 +5,7 @@
       <section class="contact-wrapper">
         <div class="contact-details">
           <h3>We are here for help you! To Shape Your Body.</h3>
-          <p>
+          <p class="info">
             At Gymate, we are dedicated to helping you achieve the body of your
             dreams. Our expert trainers and nutritionists will work with you to
             create a personalized fitness and nutrition plan that helps you
@@ -26,7 +26,7 @@
             <div class="div">
               <h4>Information</h4>
               <div class="underline"></div>
-              <p>Phone: +31 684 744 280</p>
+              <p>Phone: <span>+31 684 744 280</span></p>
               <p>Email: fady-naddaf@hotmail.com</p>
             </div>
             <div class="div">
@@ -130,10 +130,10 @@ p {
   font-size: 14px;
   color: var(--description-color);
   line-height: 20px;
-  text-align: justify;
 }
-.contact-details p {
+.contact-details .info {
   margin: 20px 0;
+  text-align: justify;
 }
 .contact-info h4 {
   font-size: 18px;
@@ -236,5 +236,73 @@ button {
 #map {
   width: 100%;
   height: 100%;
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1400px) {
+  .contact-wrapper {
+    width: 90%;
+  }
+  .contact-details {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .contact-wrapper {
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    padding: 20px;
+  }
+  .contact-details {
+    margin-bottom: 40px;
+    width: 90%;
+  }
+  .user-info-form {
+    width: 90%;
+  }
+  .google-map {
+    width: 80%;
+    padding: 20px;
+    margin: 40px 0 80px 0;
+  }
+}
+
+@media screen and (min-width: 390px) and (max-width: 767px) {
+  .contact-wrapper {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+  }
+  .contact-details {
+    margin-bottom: 40px;
+    width: 100%;
+    padding: 0;
+  }
+  .contact-details h3 {
+    font-size: 28px;
+  }
+  .contact-info {
+    grid-template-columns: repeat(1, 1fr);
+    display: grid;
+    width: 100%;
+    gap: 40px;
+    height: auto;
+    justify-content: space-between;
+  }
+  .social-media {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+  }
+  .user-info-form {
+    width: 100%;
+  }
+  .google-map {
+    width: 100%;
+    padding: 20px;
+    margin: 40px 0 80px 0;
+  }
 }
 </style>
