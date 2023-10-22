@@ -11,7 +11,7 @@ export default {
   //     },
   //   },
   // },
-  css: ["/assets/css/style.css"],
+  // css: ["/assets/css/style.css"],
   // css: ["@fortawesome/fontawesome-free/css/all.css", "/assets/css/style.css"],
   // build: {
   //   rollupOptions: {
