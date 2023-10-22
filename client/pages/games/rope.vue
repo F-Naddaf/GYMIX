@@ -169,7 +169,7 @@ onMounted(() => {
   margin: auto;
   background-image: url("/images/games/rope/rope-background.png");
   background-repeat: no-repeat;
-  background-position: bottom right;
+  background-position: bottom center;
   background-size: cover;
   position: relative;
 }

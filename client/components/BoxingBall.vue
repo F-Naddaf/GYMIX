@@ -144,4 +144,10 @@ watch(
   background: rgb(211, 103, 2);
   border-radius: 20px;
 }
+
+@media (width: 1024px) {
+  .challenge-container {
+    top: 220px;
+  }
+}
 </style>
