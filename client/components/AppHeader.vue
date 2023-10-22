@@ -166,7 +166,7 @@ nav {
   align-items: center;
   top: 10vh;
   right: 0;
-  width: 30%;
+  width: 300px;
   padding: 0;
   height: 0;
   background: #4f5155;
