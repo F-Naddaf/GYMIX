@@ -12,51 +12,47 @@ GYMIX is your ultimate fitness and wellness companion, offering a dynamic platfo
 
 GYMIX is designed to provide users with an extensive range of features and services aimed at improving their overall health and fitness. Users can customize their workout plans, access a variety of exercise routines, monitor their progress, track fitness goals, and participate in exciting fitness challenges and games.
 
-**Key Features:**
+_Key Features:_
 
-***1. Fun and Games:***
+<br>
+
+**1. Dynamic Animations:**
+
+Dynamic animations for enhanced user engagement, elevating the website's visual appeal.
+
+ <br>
+
+**2. Fun and Games:**
 
 GYMIX features interactive and simple fitness games, adding an element of enjoyment to workouts. Users can have fun while staying active.
 
 <br>
 
-***2. Captivating Animations:***
+**3. Multiple Classes & Programs:**
 
- GYMIX offers captivating animations to enhance the user experience and provide engaging visual content as part of viewing our website.
-
- <br>
-
-***3. Multiple Classes:*** 
-
-Access a wide range of fitness classes, from high-intensity interval training to relaxation sessions like yoga and meditation.
+Select the program that suits you and the days it's available. Gain access to a wide variety of fitness classes and your private trainer.
 
 <br>
 
-***4. Programs:*** 
-
-Follow structured fitness programs designed to help users achieve specific goals, whether it's weight loss, muscle gain, or endurance improvement.
-
-<br>
-
-***5. BMI Calculator:*** 
+**4. BMI Calculator:**
 
 Calculate your Body Mass Index (BMI) to assess your current fitness level and set personalized fitness goals.
 
 <br>
 
-***6. User Plan Selection:*** 
+**5. User Plan Selection:**
 
 Users can choose a suitable fitness plan tailored to their goals and preferences.
 
 <br>
 
-***7. View Feedback:*** 
+**6. View Feedback:**
 
 Access feedback and reviews from other users to gain insights into the effectiveness and quality of fitness programs.
 
 <br>
 
-***8. Gallery Exploration:*** 
+**7. Gallery Exploration:**
 
 Explore a wide array of fitness galleries, showcasing workout routines, exercise techniques, and inspiring success stories.
 
@@ -64,8 +60,108 @@ Explore a wide array of fitness galleries, showcasing workout routines, exercise
 
 ## 3. Link and Preview
 
-![App view](./client/public/img/Laptop-and-mobile.jpg)
+![App view](public/images/readme/Laptop-and-mobile.png)
 
 Project link is available at [GYMIX App](https://sport-gymix.netlify.app/)
 
 <br>
+
+## 4. Color guide
+
+![App color guide](public/images/readme/color-guide.png)
+
+<br>
+
+## 5. Built with
+
+<p align="left">
+<img  src="public/images/readme/vue.png" alt="vue" width="150" />
+<img  src="public/images/readme/nuxt.png" alt="vue" width="150" />
+<img  src="public/images/readme/google-map.png" alt="vue" width="150" />
+<img  src="public/images/readme/css.png" alt="vue" width="150" />
+</p>
+
+<br>
+
+## 6. Project Setup
+
+To set up the GYMIX project, follow these steps:
+
+<br>
+
+1. Navigate to the main directory of the project.
+
+2. Run the command `npm install` to install the necessary dependencies.
+
+3. To run the application in development mode, use the command `npm run dev`. This will start the server and client components concurrently, allowing you to test and interact with the GYMIX platform locally.
+
+<br>
+
+## 7. Code structure
+
+```
+assets
+  └── css
+      └── style.css
+components
+  └── AboutUs.vue
+  └── AppFooter.vue
+  └── AppHeader.vue
+  └── BMI.vue
+  └── BoxingBall.vue
+  └── BoxingInstructions.vue
+  └── Button.vue
+  └── Featured.vue
+  └── Feedback.vue
+  └── Gallery.vue
+  └── Gallery3D.vue
+  └── GameAvatar.vue
+  └── GameInstructions.vue
+  └── GameMessage.vue
+  └── HeroSection.vue
+  └── HomeCard.vue
+  └── JoinUs.vue
+  └── Logo.vue
+  └── PagesHero.vue
+  └── Plan.vue
+  └── SideBar.vue
+  └── Trainers.vue
+data
+  └── classes.js
+  └── programs.js
+layouts
+  └── custom.vue
+  └── default.vue
+pages
+  └── games
+      └── boxing.vue
+      └── index.vue
+      └── rope.vue
+  └── about.vue
+  └── classes.vue
+  └── contact.vue
+  └── gallery.vue
+  └── index.vue
+  └── login.vue
+  └── programs.vue
+public
+  └── icons
+  └── images
+      └── about-page
+      └── avatar
+      └── classes
+      └── featured
+      └── feedback
+      └── gallery
+      └── games
+      └── readme
+      └── sidebar
+      └── Trainers
+.gitignore
+error.vue
+nuxt.config.ts
+package-lock.json
+package.json
+README.md
+tsconfig.json
+```
