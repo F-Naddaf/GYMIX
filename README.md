@@ -16,43 +16,43 @@ _Key Features:_
 
 <br>
 
-**1. Dynamic Animations:**
+**Dynamic Animations:**
 
 Dynamic animations for enhanced user engagement, elevating the website's visual appeal.
 
  <br>
 
-**2. Fun and Games:**
+**Fun and Games:**
 
 GYMIX features interactive and simple fitness games, adding an element of enjoyment to workouts. Users can have fun while staying active.
 
 <br>
 
-**3. Multiple Classes & Programs:**
+**Multiple Classes & Programs:**
 
 Select the program that suits you and the days it's available. Gain access to a wide variety of fitness classes and your private trainer.
 
 <br>
 
-**4. BMI Calculator:**
+**BMI Calculator:**
 
 Calculate your Body Mass Index (BMI) to assess your current fitness level and set personalized fitness goals.
 
 <br>
 
-**5. User Plan Selection:**
+**User Plan Selection:**
 
 Users can choose a suitable fitness plan tailored to their goals and preferences.
 
 <br>
 
-**6. View Feedback:**
+**View Feedback:**
 
 Access feedback and reviews from other users to gain insights into the effectiveness and quality of fitness programs.
 
 <br>
 
-**7. Gallery Exploration:**
+**Gallery Exploration:**
 
 Explore a wide array of fitness galleries, showcasing workout routines, exercise techniques, and inspiring success stories.
 
